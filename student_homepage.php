@@ -50,6 +50,12 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
+              <li class="nav navbar-nav">
+                 <a href="student_homepage.php" class="logo-lg">
+                   <span class="fa fa-home"></span>
+                 </a>
+              </li>
+
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
@@ -66,10 +72,10 @@
                             <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                           </div>
                           <h4>
-                            Support Team
+                            Placement Officer
                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
                           </h4>
-                          <p>Why not buy a new awesome theme?</p>
+                          <p>You have a job interview on 12th Nov, 2015</p>
                         </a>
                       </li><!-- end message -->
                       <li>
@@ -78,10 +84,10 @@
                             <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                           </div>
                           <h4>
-                            AdminLTE Design Team
+                            Tata Consultancy Services
                             <small><i class="fa fa-clock-o"></i> 2 hours</small>
                           </h4>
-                          <p>Why not buy a new awesome theme?</p>
+                          <p>You are eligible for the job.</p>
                         </a>
                       </li>
                       <li>
@@ -93,7 +99,7 @@
                             Developers
                             <small><i class="fa fa-clock-o"></i> Today</small>
                           </h4>
-                          <p>Why not buy a new awesome theme?</p>
+                          <p>You can now change your theme in the Placement Portal.</p>
                         </a>
                       </li>
                       <li>
@@ -102,10 +108,10 @@
                             <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                           </div>
                           <h4>
-                            Sales Department
+                            Vice Chancellor
                             <small><i class="fa fa-clock-o"></i> Yesterday</small>
                           </h4>
-                          <p>Why not buy a new awesome theme?</p>
+                          <p>Congratulations Student</p>
                         </a>
                       </li>
                       <li>
@@ -312,7 +318,7 @@
           <ul class="sidebar-menu">
             <li class="header">YOUR MENU</li>
             <li class="active treeview">
-              <a href="academics.php">
+              <a href="Pages/StudentHomepage/academics.php">
                 <i class="fa fa-graduation-cap"></i> <span>Academics</span></i>
               </a>
             </li>
@@ -322,19 +328,19 @@
                 <span>Profile</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>View Profile</a></li>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Update CV</a></li>
+                <li><a href="Pages/StudentHomepage/profile_view.php"><i class="fa fa-circle-o"></i>View Profile</a></li>
+                <li><a href="Pages/StudentHomepage/cv_update.php"><i class="fa fa-circle-o"></i>Update CV</a></li>
               </ul>
             </li>
             
             <li>
-              <a href="#">
+              <a href="Pages/StudentHomepage/calender.php">
                 <i class="fa fa-calendar"></i> <span>Calendar</span>
                 <small class="label pull-right bg-red">3</small>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="Pages/StudentHomepage/inbox.php">
                 <i class="fa fa-envelope"></i> <span>Inbox</span>
                 <small class="label pull-right bg-yellow">12</small>
               </a>
@@ -344,12 +350,12 @@
                 <i class="fa fa-cog"></i> <span>Account Settings</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Update Profile</a></li>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Change Password</a></li>
+                <li><a href="Pages/StudentHomepage/profile_update.php"><i class="fa fa-circle-o"></i>Update Profile</a></li>
+                <li><a href="Pages/StudentHomepage/password_change.php"><i class="fa fa-circle-o"></i>Change Password</a></li>
               </ul>
             </li>
             <li class="active treeview">
-              <a href="academics.php">
+              <a href="Pages/StudentHomepage/developers.php">
                 <i class="fa fa-star"></i> <span>Developer's Page</span></i>
               </a>
             </li>            
