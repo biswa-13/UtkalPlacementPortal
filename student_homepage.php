@@ -3,10 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<<<<<<< HEAD
-=======
-    <link rel="icon" href="images/favicon.ico" type="images/gif" sizes="16x16">
->>>>>>> biswa-13/master
     <title>Utkal Placement Portal</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -39,15 +35,9 @@
         <!-- Logo -->
         <a href="student_homepage.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-<<<<<<< HEAD
           <span class="logo-mini"><img src="images/uulogo.png" height="50" width="50"></span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><img src="images/uulogo.png" height="30" width="30"><b>Utkal University</b></span>
-=======
-          <span class="logo-mini"><img src="images/uulogo.gif" height="50" width="50"></span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><img src="images/uulogo.gif" height="45" width="45"><b>Utkal University</b></span>
->>>>>>> biswa-13/master
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -268,7 +258,7 @@
                     </p>
                   </li>
                   <!-- Menu Body -->
-                  <!-- <li class="user-body">
+                  <li class="user-body">
                     <div class="col-xs-4 text-center">
                       <a href="#">Followers</a>
                     </div>
@@ -278,16 +268,15 @@
                     <div class="col-xs-4 text-center">
                       <a href="#">Friends</a>
                     </div>
-                  </li> -->
+                  </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <a href="#" class="btn btn-danger "><i class="fa fa-power-off"></i> Sign out</a>
-                    <!-- <div class="pull-left">
+                    <div class="pull-left">
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
                       <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                    </div> -->
+                    </div>
                   </li>
                 </ul>
               </li>
@@ -329,11 +318,7 @@
           <ul class="sidebar-menu">
             <li class="header">YOUR MENU</li>
             <li class="active treeview">
-<<<<<<< HEAD
               <a href="Pages/StudentHomepage/academics.php">
-=======
-              <a href="academics.php">
->>>>>>> biswa-13/master
                 <i class="fa fa-graduation-cap"></i> <span>Academics</span></i>
               </a>
             </li>
@@ -355,13 +340,9 @@
               </a>
             </li>
             <li>
-<<<<<<< HEAD
               <a href="Pages/StudentHomepage/inbox.php">
-=======
-              <a href="#">
->>>>>>> biswa-13/master
-                <i class="fa fa-envelope"></i> <span>Inbox</span>
-                <small class="label pull-right bg-yellow">12</small>
+                <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                <small class="label pull-right bg-yellow">5</small>
               </a>
             </li>
             <li>
@@ -374,11 +355,7 @@
               </ul>
             </li>
             <li class="active treeview">
-<<<<<<< HEAD
               <a href="Pages/StudentHomepage/developers.php">
-=======
-              <a href="academics.php">
->>>>>>> biswa-13/master
                 <i class="fa fa-star"></i> <span>Developer's Page</span></i>
               </a>
             </li>            
@@ -392,16 +369,8 @@
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-<<<<<<< HEAD
         <strong>Copyright &copy; 2015 <a href="#">PLACEMENT CELL UTKAL UNIVERSITY</a>.</strong> All rights reserved. <br>
         <strong><a href="#">PLACEMENT PORTAL 2015</a>.<br> Developed by <a href="#">Students of Integrated MCA and MTech-CSE, Utkal University</a></strong>
-=======
-        <center>
-          <strong>Copyright &copy; 2015 <a href="#">PLACEMENT CELL UTKAL UNIVERSITY</a>.<br></strong>
-          <strong>Developed & Maintained By</strong> 
-          <strong><a href="#">Students of Integrated MCA & MTech-CSE, Utkal University</a></strong>
-        </center>
->>>>>>> biswa-13/master
       </footer>
 
       <!-- Control Sidebar -->
