@@ -350,7 +350,7 @@
                 <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Change Password</a></li>
               </ul>
             </li>
-            <li class="active treeview">
+            <li class=" treeview">
               <a href="academics.php">
                 <i class="fa fa-star"></i> <span>Developer's Page</span></i>
               </a>

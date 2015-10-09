@@ -314,22 +314,22 @@
           <ul class="sidebar-menu">
             <li class="header">YOUR MENU</li>
             <li class="active treeview">
-              <a href="">
+              <a href="#">
                 <i class="fa fa-desktop"></i> <span>Dashboard</span></i>
               </a>
             </li>
-            <li class="active treeview">
-              <a href="">
+            <li class=" treeview">
+              <a href="#">
                 <i class="fa  fa-users"></i> <span>Students</span></i>
               </a>
             </li>
-            <li class="active treeview">
-              <a href="">
+            <li class=" treeview">
+              <a href="#">
                 <i class="fa fa-institution"></i> <span>Departments</span></i>
               </a>
             </li>
-            <li class="active treeview">
-              <a href="">
+            <li class=" treeview">
+              <a href="#">
                 <i class="fa fa-user-secret"></i> <span>Employeers</span></i>
               </a>
             </li>
@@ -365,7 +365,7 @@
                 <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Change Password</a></li>
               </ul>
             </li>
-            <li class="active treeview">
+            <li class=" treeview">
               <a href="academics.php">
                 <i class="fa fa-star"></i> <span>Developer's Page</span></i>
               </a>
