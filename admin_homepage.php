@@ -241,14 +241,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Student's Name</span>
+                  <span class="hidden-xs">Admin Name</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
-                      Student's Name
+                      Admin Name
                       <small>Registered since Nov. 2012</small>
                     </p>
                   </li>
@@ -314,19 +314,24 @@
           <ul class="sidebar-menu">
             <li class="header">YOUR MENU</li>
             <li class="active treeview">
-              <a href="academics.php">
-                <i class="fa fa-graduation-cap"></i> <span>Academics</span></i>
+              <a href="#">
+                <i class="fa fa-desktop"></i> <span>Dashboard</span></i>
               </a>
             </li>
-            <li class="treeview">
+            <li class=" treeview">
               <a href="#">
-                <i class="fa fa-user"></i>
-                <span>Profile</span>
+                <i class="fa  fa-users"></i> <span>Students</span></i>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>View Profile</a></li>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Update CV</a></li>
-              </ul>
+            </li>
+            <li class=" treeview">
+              <a href="#">
+                <i class="fa fa-institution"></i> <span>Departments</span></i>
+              </a>
+            </li>
+            <li class=" treeview">
+              <a href="#">
+                <i class="fa fa-user-secret"></i> <span>Employeers</span></i>
+              </a>
             </li>
             
             <li>
@@ -340,6 +345,16 @@
                 <i class="fa fa-envelope"></i> <span>Inbox</span>
                 <small class="label pull-right bg-yellow">12</small>
               </a>
+            </li>
+              <li class="treeview">
+              <a href="#">
+                <i class="fa fa-user"></i>
+                <span>Profile</span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>View Profile</a></li>
+                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Update CV</a></li>
+              </ul>
             </li>
             <li>
                <a href="#">
