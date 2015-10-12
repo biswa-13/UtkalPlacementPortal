@@ -317,7 +317,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">YOUR MENU</li>
-            <li class="active treeview">
+            <li class="treeview">
               <a href="Pages/StudentHomepage/academics.php">
                 <i class="fa fa-graduation-cap"></i> <span>Academics</span></i>
               </a>
@@ -341,7 +341,7 @@
             </li>
             <li>
               <a href="Pages/StudentHomepage/inbox.php">
-                <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                <i class="fa fa-envelope"></i> <span>Inbox</span>
                 <small class="label pull-right bg-yellow">5</small>
               </a>
             </li>
@@ -354,7 +354,7 @@
                 <li><a href="Pages/StudentHomepage/password_change.php"><i class="fa fa-circle-o"></i>Change Password</a></li>
               </ul>
             </li>
-            <li class="active treeview">
+            <li class="treeview">
               <a href="Pages/StudentHomepage/developers.php">
                 <i class="fa fa-star"></i> <span>Developer's Page</span></i>
               </a>

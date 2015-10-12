@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Profile Change</title>
+    <title>Update Academics</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -302,12 +302,13 @@
 
         <section class="content-header">
           <h1>
-            Update Your Profile
+            Update your Academic Details
           </h1>
-          
+          <ol class="breadcrumb">
+            <li><a href="academics.php"><b>Back to Academics</b></a></li>
+          </ol>
         </section>
-          
-        </section>
+
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <strong>Copyright &copy; 2015 <a href="#">PLACEMENT CELL UTKAL UNIVERSITY</a>.</strong> All rights reserved. <br>

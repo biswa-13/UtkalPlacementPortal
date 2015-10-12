@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Profile Change</title>
+    <title>Compose Mail</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -297,18 +297,98 @@
         <!-- /.sidebar -->
       </aside>
 
+      <!-- Content Wrapper. Contains page content --></aside>
+
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-
+        <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Update Your Profile
+            Inbox
+            <small>13 new messages</small>
           </h1>
-          
+            
         </section>
-          
-        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-3">
+              <a href="inbox.php" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-envelope"></i>&nbsp; &nbsp; &nbsp;Back to Inbox</a>
+              <div class="box box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Folders</h3>
+                  <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div>
+                <div class="box-body no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a href="mailbox.html"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">12</span></a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                    <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
+                    <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a></li>
+                    <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /. box -->
+              <div class="box box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Labels</h3>
+                  <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-9">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Compose New Message</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="form-group">
+                    <input class="form-control" placeholder="To:">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" placeholder="Subject:">
+                  </div>
+                  <div class="form-group">
+                    <textarea id="compose-textarea" class="form-control" style="height: 300px">
+                      <h1><u>Heading Of Message</u></h1>
+                      <h4>Subheading</h4>
+                      <p>Body content of the message</p>
+                      
+                    </textarea>
+                  </div>
+                  <div class="form-group">
+                    <div class="btn btn-default btn-file">
+                      <i class="fa fa-paperclip"></i> Attachment
+                      <input type="file" name="attachment">
+                    </div>
+                    <p class="help-block">Max. 32MB</p>
+                  </div>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                  <div class="pull-right">
+                    <button class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+                  </div>
+                  <button class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
+                </div><!-- /.box-footer -->
+              </div><!-- /. box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
+
       <footer class="main-footer">
         <strong>Copyright &copy; 2015 <a href="#">PLACEMENT CELL UTKAL UNIVERSITY</a>.</strong> All rights reserved. <br>
         <strong><a href="#">PLACEMENT PORTAL 2015</a>.<br> Developed by <a href="#">Students of Integrated MCA and MTech-CSE, Utkal University</a></strong>
@@ -316,7 +396,7 @@
 
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
-        
+      
         <div class="tab-content">
           
           <div class="tab-pane" id="control-sidebar-home-tab">
@@ -340,11 +420,18 @@
     <script src="../../plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/app.min.js"></script>
-    <!-- iCheck -->
-    <script src="../../plugins/iCheck/icheck.min.js"></script>
-    <!-- Page Script -->
-  
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script>
+    <!-- iCheck -->
+    <script src="../../plugins/iCheck/icheck.min.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Page Script -->
+    <script>
+      $(function () {
+        //Add text editor
+        $("#compose-textarea").wysihtml5();
+      });
+    </script>
   </body>
 </html>
