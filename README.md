@@ -39,6 +39,14 @@ So to maintain a perfect code base  i would like to request all the members to f
       <td>Integrated MCA(Continuing)</td>
       <td>Student</td>
     </tr>
+	<tr>
+      <td>3 .</td>
+      <td>Anit</td>
+      <td></td>
+      <td></td>
+      <td>Integrated MCA(Continuing)</td>
+      <td>Student</td>
+    </tr>
   <\tbody>
 </table>
 
