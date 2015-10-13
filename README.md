@@ -47,6 +47,14 @@ So to maintain a perfect code base  i would like to request all the members to f
       <td>Integrated MCA(Continuing)</td>
       <td>Student</td>
     </tr>
+    <tr>
+      <td>4 .</td>
+      <td>Prabhat Routray</td>
+      <td>9090459702</td>
+      <td>lucky.pr0034@gmail.com</td>
+      <td>Integrated MCA(Continuing)</td>
+      <td>Student</td>
+    </tr>
   <\tbody>
 </table>
 
