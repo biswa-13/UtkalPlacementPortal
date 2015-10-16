@@ -1,3 +1,11 @@
+<?php
+  if(isset($_GET['pid'])){
+    $page = $_GET['pid'];
+  }else{
+    $page = 'nb81io9a';
+  }
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -208,7 +216,7 @@
           <ul class="sidebar-menu">
             <li class="header">YOUR MENU</li>
             <li class="active treeview">
-              <a href="#">
+              <a href="admin_homepage.php?pid=nb81io9a">
                 <i class="fa fa-desktop"></i> <span>Dashboard</span></i>
               </a>
             </li>
@@ -270,6 +278,19 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
+          <?php 
+          //echo("page -- ".$page);
+          switch ($page) {
+            case 'nb81io9a':
+              include('demo.php');
+              break;
+            
+            default:
+              include('demo.php');
+              break;
+          }
+          
+        ?>
       
       </div><!-- /.content-wrapper -->
 

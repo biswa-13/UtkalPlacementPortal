@@ -1,3 +1,11 @@
+<?php
+  if(isset($_GET['pid'])){
+    $page = $_GET['pid'];
+  }else{
+    $page = '1b5n2hhl';
+  }
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -208,11 +216,16 @@
           <ul class="sidebar-menu" id="studentMenu">
             <li class="header">YOUR MENU</li>
             <li class="treeview">
-              <a href="Pages/StudentHomepage/academics.php">
+              <a href="student_homepage.php?pid=1b5n2hhl">
                 <i class="fa fa-graduation-cap"></i> <span>Academics</span></i>
               </a>
             </li>
             <li class="treeview">
+              <a href="student_homepage.php?pid=xy5k90hj">
+                <i class="fa fa-user"></i> <span>Profile</span></i>
+              </a>
+            </li>
+            <!-- <li class="treeview">
               <a href="#">
                 <i class="fa fa-user"></i>
                 <span>Profile</span>
@@ -221,7 +234,7 @@
                 <li><a href="Pages/StudentHomepage/profile_view.php"><i class="fa fa-circle-o"></i>View Profile</a></li>
                 <li><a href="Pages/StudentHomepage/cv_update.php"><i class="fa fa-circle-o"></i>Update CV</a></li>
               </ul>
-            </li>
+            </li> -->
             
             <li>
               <a href="Pages/StudentHomepage/calender.php">
@@ -240,8 +253,8 @@
                 <i class="fa fa-cog"></i> <span>Account Settings</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="Pages/StudentHomepage/profile_update.php"><i class="fa fa-circle-o"></i>Update Profile</a></li>
-                <li><a href="Pages/StudentHomepage/password_change.php"><i class="fa fa-circle-o"></i>Change Password</a></li>
+                <!-- <li><a href="Pages/StudentHomepage/profile_update.php"><i class="fa fa-circle-o"></i>Update Profile</a></li> -->
+                <li><a href="Pages/StudentHomepage/password_change.php"><i class="fa fa fa-key"></i>Change Password</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -255,8 +268,22 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper" id="studentContainer">
-
-      
+        <?php 
+          //echo("page -- ".$page);
+          switch ($page) {
+            case '1b5n2hhl':
+              include('academics.php');
+              break;
+            case 'xy5k90hj'://xy5k90hj
+              include('demo.php');
+              break;
+            
+            default:
+              include('academics.php');
+              break;
+          }
+          
+        ?>
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
@@ -321,5 +348,14 @@
     <script src="dist/js/pages/dashboard2.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+
+    <script>
+    jQuery('#studentMenu').click(function(){
+      console.log("click...");
+    })
+      jQuery('document').ready(function(){
+        console.log(1);
+      })
+    </script>
   </body>
 </html>

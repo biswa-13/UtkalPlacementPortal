@@ -3,11 +3,11 @@
 	<!-- Start : Top BreadCrumb -->
 	<section class="content-header">
       <h1>
-       Academics Page
+       Demo Page
       </h1>
       <ol class="breadcrumb">
         <li><a href="student_homepage.php"><i class="fa fa-home"></i> Home</a></li>
-        <li class="active">Academics</li>
+        <li class="active">Demo</li>
       </ol>
     </section>
     <!-- Finish : Top BreadCrumb -->
