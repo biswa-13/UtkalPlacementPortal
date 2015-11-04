@@ -1,52 +1,63 @@
 <?php
-  if(isset($_GET['pid'])){
+  if (isset($_GET['pid']))
+  {
     $page = $_GET['pid'];
-  }else{
-    $page = '1b5n2hhl';
   }
-
+  else
+  {
+    $page = '1hm12ux7';
+  }
 ?>
+
+<?php 
+  require 'Pages/Common/dbconnect.php';
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="images/favicon.ico" type="images/gif" sizes="16x16">
-    <title>Utkal Placement Portal</title>
+    <title>Student's Home</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
+
+        <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- jvectormap -->
+    <!-- fullCalendar 2.2.5-->
+    <link rel="stylesheet" href="plugins/fullcalendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="plugins/fullcalendar/fullcalendar.print.css" media="print">
+    
     <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
       <header class="main-header">
 
         <!-- Logo -->
         <a href="student_homepage.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><img src="images/uulogo.gif" height="50" width="50"></span>
+          <span class="logo-mini"><img src="images/uulogo.png" height="50" width="50"></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><img src="images/uulogo.gif" height="45" width="45"><b>Utkal University</b></span>
+          <span class="logo-lg"><img src="images/uulogo.png" height="35" width="35">&nbsp;<b>Utkal University</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -59,6 +70,12 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
+              <li class="nav navbar-nav">
+                 <a href="student_homepage.php?pid=1hm12ux7" class="logo-lg">
+                   <span class="fa fa-home"></span>
+                 </a>
+              </li>
+
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
@@ -167,7 +184,7 @@
                   </li> -->
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left"><a href="#" class="btn btn-info "><i class="fa fa-key"></i> Change Password</a></div>
+                    <div class="pull-left"><a href="student_homepage.php?pid=6st16yz9" class="btn btn-info "><i class="fa fa-cog"></i>&nbsp; Settings</a></div>
                     <div class="pull-right"><a href="#" class="btn btn-default "><i class="fa fa-power-off"></i> Sign Out</a></div>
                     <!-- <div class="pull-left">
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
@@ -216,49 +233,38 @@
           <ul class="sidebar-menu" id="studentMenu">
             <li class="header">YOUR MENU</li>
             <li class="treeview">
-              <a href="student_homepage.php?pid=1b5n2hhl">
-                <i class="fa fa-graduation-cap"></i> <span>Academics</span></i>
+              <a href="student_homepage.php?pid=2ac17nw3">
+                <i class="glyphicon glyphicon-education"></i> <span>Academics</span></i>
               </a>
             </li>
             <li class="treeview">
-              <a href="student_homepage.php?pid=xy5k90hj">
-                <i class="fa fa-user"></i> <span>Profile</span></i>
-              </a>
-            </li>
-            <!-- <li class="treeview">
-              <a href="#">
-                <i class="fa fa-user"></i>
+              <a href="student_homepage.php?pid=7pr8yhf0">
+                <i class="glyphicon glyphicon-user"></i>
                 <span>Profile</span>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="Pages/StudentHomepage/profile_view.php"><i class="fa fa-circle-o"></i>View Profile</a></li>
-                <li><a href="Pages/StudentHomepage/cv_update.php"><i class="fa fa-circle-o"></i>Update CV</a></li>
-              </ul>
-            </li> -->
+            </li>
             
             <li>
-              <a href="Pages/StudentHomepage/calender.php">
+              <a href="student_homepage.php?pid=3ca88io1">
                 <i class="fa fa-calendar"></i> <span>Calendar</span>
-                <small class="label pull-right bg-red">3</small>
+                <small class="label pull-right bg-red">0</small>
               </a>
             </li>
             <li>
-              <a href="Pages/StudentHomepage/inbox.php">
+              <a href="student_homepage.php?pid=4ib63ty7">
                 <i class="fa fa-envelope"></i> <span>Inbox</span>
-                <small class="label pull-right bg-yellow">5</small>
+                <small class="label pull-right bg-yellow">0</small>
               </a>
             </li>
-            <li>
-               <a href="#">
-                <i class="fa fa-cog"></i> <span>Account Settings</span>
-              </a>
-              <ul class="treeview-menu">
-                <!-- <li><a href="Pages/StudentHomepage/profile_update.php"><i class="fa fa-circle-o"></i>Update Profile</a></li> -->
-                <li><a href="Pages/StudentHomepage/password_change.php"><i class="fa fa fa-key"></i>Change Password</a></li>
-              </ul>
-            </li>
+            <!--
             <li class="treeview">
-              <a href="Pages/StudentHomepage/developers.php">
+              <a href="#">
+                <i class="fa fa-commenting"></i> <span>Chat with Placement Cell</span></i>
+              </a>
+            </li>
+            --> 
+            <li class="treeview">
+              <a href="student_homepage.php?pid=5dp21t6b">
                 <i class="fa fa-star"></i> <span>Developer's Page</span></i>
               </a>
             </li>            
@@ -268,67 +274,79 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper" id="studentContainer">
-        <?php 
-          //echo("page -- ".$page);
-          switch ($page) {
-            case '1b5n2hhl':
-              include('academics.php');
-              break;
-            case 'xy5k90hj'://xy5k90hj
-              include('demo.php');
-              break;
-            
-            default:
-              include('academics.php');
-              break;
-          }
-          
-        ?>
-      </div><!-- /.content-wrapper -->
-
-      <footer class="main-footer">
-        <center>
-          <strong>Copyright &copy; 2015 <a href="#">PLACEMENT CELL UTKAL UNIVERSITY</a>.<br></strong>
-          <strong>Developed & Maintained By</strong> 
-          <strong><a href="#">Students of Integrated MCA & MTech-CSE, Utkal University</a></strong>
-        </center>
-      </footer>
-
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <!--
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-
-      -->
-
-        <!-- Tabl panes -->
-        <div class="tab-content">
-          <!-- Home tab content -->
-          
-          <div class="tab-pane" id="control-sidebar-home-tab">
-           
-
-          </div><!-- /.tab-pane -->
-
-          <!-- Settings tab content -->
-          <!--
-          <div class="tab-pane" id="control-sidebar-settings-tab">
-            
-          </div><!-- /.tab-pane -->
-        </div>
-      </aside><!-- /.control-sidebar -->
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
+          <?php 
+              if ($page === '1hm12ux7')
+              {
+                include 'Pages/StudentPanel/home.php';
+              }
+              else
+              if ($page === '2ac17nw3')
+              {
+                include 'Pages/StudentPanel/academics.php';
+              }
+              else
+              if ($page === '3ca88io1')
+              {
+                include 'Pages/StudentPanel/cvupload_final.php';
+              }
+              else
+              if ($page === '4ib63ty7')
+              {
+                include 'Pages/Common/inbox.php';
+              }
+              else
+              if ($page === '5dp21t6b')
+              {
+                include 'Pages/Common/developers.php';
+              }
+              else
+              if ($page === '6st16yz9')
+              {
+                include 'Pages/Common/settings.php';
+              }
+              else
+              if ($page === '7pr8yhf0')
+              {
+                include 'Pages/Common/profile.php';
+              }
+              else
+              if ($page === '8cmp43e2')
+              {
+                include 'Pages/Common/compose.php';
+              }
+              else
+              if ($page === '9rmm32c6')
+              {
+                include 'Pages/Common/read-mail.php';
+              }
+              else
+              {
+                include 'Pages/StudentPanel/home.php';
+              }
+          ?>
+      </div>
 
     </div><!-- ./wrapper -->
 
-    <!-- jQuery 2.1.4 -->
+    <footer class="main-footer">
+        <center>
+          <strong>Copyright &copy; <?php echo date ("Y") ?> <a href="#">PLACEMENT CELL UTKAL UNIVERSITY</a>.<br></strong>
+          <strong>Developed & Maintained By</strong> 
+          <strong><a href="#">Students of Integrated MCA & MTech-CSE, Utkal University</a></strong>
+        </center>
+    </footer>
+
+    <aside class="control-sidebar control-sidebar-dark">
+      <div class="tab-content">
+        <div class="tab-pane" id="control-sidebar-home-tab">
+        </div>
+      </div>
+    </aside>
+      
+
+        <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -338,7 +356,7 @@
     <!-- Sparkline -->
     <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
     <!-- jvectormap -->
-    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
     <!-- SlimScroll 1.3.0 -->
     <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
@@ -349,13 +367,10 @@
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
 
-    <script>
-    jQuery('#studentMenu').click(function(){
-      console.log("click...");
-    })
-      jQuery('document').ready(function(){
-        console.log(1);
-      })
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="plugins/fullcalendar/fullcalendar.min.js"></script>
+
+
+    
   </body>
 </html>

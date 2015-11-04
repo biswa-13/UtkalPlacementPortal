@@ -28,6 +28,9 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    <!-- Files Required for Stackable Modals -->
+    <!--<link href="plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+    <link href="plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,6 +38,9 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- jQuery 2.1.4 -->
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -215,7 +221,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">YOUR MENU</li>
-            <li class="active treeview">
+            <li class="treeview">
               <a href="admin_homepage.php?pid=nb81io9a">
                 <i class="fa fa-desktop"></i> <span>Dashboard</span></i>
               </a>
@@ -226,12 +232,12 @@
               </a>
             </li>
             <li class=" treeview">
-              <a href="#">
+              <a href="admin_homepage.php?pid=xi905sy1">
                 <i class="fa fa-institution"></i> <span>Departments</span></i>
               </a>
             </li>
             <li class=" treeview">
-              <a href="#">
+              <a href="admin_homepage.php?pid=i29wls18">
                 <i class="fa fa-user-secret"></i> <span>Employeers</span></i>
               </a>
             </li>
@@ -248,24 +254,16 @@
                 <small class="label pull-right bg-yellow">12</small>
               </a>
             </li>
-              <li class="treeview">
-              <a href="#">
-                <i class="fa fa-user"></i>
-                <span>Profile</span>
+            <li class=" treeview">
+              <a href="academics.php">
+                <i class="fa fa-user"></i> <span>Profile</span></i>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>View Profile</a></li>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Update CV</a></li>
-              </ul>
             </li>
-            <li>
-               <a href="#">
-                <i class="fa fa-cog"></i> <span>Account Settings</span>
+
+            <li class=" treeview">
+              <a href="academics.php">
+                <i class="fa fa-cog"></i> <span>Account Settings</span></i>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Update Profile</a></li>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>Change Password</a></li>
-              </ul>
             </li>
             <li class=" treeview">
               <a href="academics.php">
@@ -282,7 +280,13 @@
           //echo("page -- ".$page);
           switch ($page) {
             case 'nb81io9a':
-              include('demo.php');
+              include('Pages/AdminPanel/adminDashboard.php');
+              break;
+            case 'xi905sy1':
+              include('Pages/AdminPanel/departmentInfo.php');
+              break;
+            case 'i29wls18':
+              include('Pages/AdminPanel/employerInfo.php');
               break;
             
             default:
@@ -333,10 +337,10 @@
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
 
+
     </div><!-- ./wrapper -->
 
-    <!-- jQuery 2.1.4 -->
-    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- FastClick -->
