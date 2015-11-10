@@ -1,0 +1,17 @@
+.modalOnTop{
+	z-index: 1060 !important;
+}
+
+.infoModal{
+	font-size: 14px;
+}
+
+.valueRequired{
+	color: red;
+	font-style: bold;
+	font-size: 16px;
+}
+
+.centerText{
+	text-align: center;
+}

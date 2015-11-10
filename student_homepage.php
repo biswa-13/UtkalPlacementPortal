@@ -1,4 +1,13 @@
 <?php
+  require "Pages/Common/core.php";
+  require 'Pages/Common/showInformation.php';
+
+  $user_id = $_SESSION['user_id'];
+  $user_name = $_SESSION['user_name'];
+  $mobileno = $_SESSION['user_mobile'];
+
+  activate_user($user_id);
+
   if (isset($_GET['pid']))
   {
     $page = $_GET['pid'];
@@ -7,19 +16,30 @@
   {
     $page = '1hm12ux7';
   }
+
+  if (isset($_SESSION['cv_ext']))
+  {
+    $cv_ext = $_SESSION['cv_ext'];
+  }
+
 ?>
 
-<?php 
-  require 'Pages/Common/dbconnect.php';
-?>
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Student's Home</title>
-    <!-- Tell the browser to be responsive to screen width -->
+    <link rel="icon" href="images/favicon.ico" type="images/gif" sizes="16x16">
+    <title>Utkal Placement Portal</title>
+
+    <noscript>
+      <meta http-equiv="Refresh" content="0;Pages/Common/enableJavaScript.php">
+      <?php if(basename($_SERVER['REQUEST_URI']) != "Pages/Common/enableJavaScript.php"){ ?>
+          <meta http-equiv="Refresh" content="0;Pages/Common/enableJavaScript.php">
+      <?php } ?>
+   </noscript>
+    
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
         <!-- Bootstrap 3.3.5 -->
@@ -46,6 +66,11 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
+
 
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
@@ -158,15 +183,15 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Student's Name</span>
+                  <img id="toprightimg" src="<?php echo getuserfield_settings('image', $user_id);?>" class="user-image" alt="User Image">
+                  <span class="hidden-xs"><?php echo get_name($user_id); ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img id="toprightdropdownimg" src="<?php echo getuserfield_settings('image', $user_id);?>" class="img-circle" alt="User Image">
                     <p>
-                      Student's Name
+                      <?php echo get_name($user_id); ?>
                       <small>Registered since Nov. 2012</small>
                     </p>
                   </li>
@@ -185,13 +210,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left"><a href="student_homepage.php?pid=6st16yz9" class="btn btn-info "><i class="fa fa-cog"></i>&nbsp; Settings</a></div>
-                    <div class="pull-right"><a href="#" class="btn btn-default "><i class="fa fa-power-off"></i> Sign Out</a></div>
-                    <!-- <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
-                    <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                    </div> -->
+                    <div class="pull-right"><a href="student_homepage.php?pid=81fgc3tx" class="btn btn-default "><i class="fa fa-power-off"></i> Sign Out</a></div>
                   </li>
                 </ul>
               </li>
@@ -211,10 +230,10 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+              <img id="topleftimg" src="<?php echo getuserfield_settings('image', $user_id);?>" class="img img-circle user-image" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Student's Name</p>
+              <p><?php echo get_name($user_id); ?></p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -243,15 +262,22 @@
                 <span>Profile</span>
               </a>
             </li>
-            
             <li>
-              <a href="student_homepage.php?pid=3ca88io1">
-                <i class="fa fa-calendar"></i> <span>Calendar</span>
+              <a href="student_homepage.php?pid=6st16yz9">
+                <i class="fa fa-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <!--
+            <li>
+              <a href="Pages/Common/calender.php">
+                <i class="fa fa-calender"></i>
+                <span>Calendar</span>
                 <small class="label pull-right bg-red">0</small>
               </a>
             </li>
             <li>
-              <a href="student_homepage.php?pid=4ib63ty7">
+              <a href="student_homepage.php?pid=8xfh24kl">
                 <i class="fa fa-envelope"></i> <span>Inbox</span>
                 <small class="label pull-right bg-yellow">0</small>
               </a>
@@ -274,50 +300,168 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper" id="studentContainer">
-          <?php 
+          <?php
+              echo $mobileno;
+              
               if ($page === '1hm12ux7')
               {
-                include 'Pages/StudentPanel/home.php';
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/StudentPanel/home.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
               }
               else
               if ($page === '2ac17nw3')
               {
-                include 'Pages/StudentPanel/academics.php';
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/StudentPanel/academics.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
               }
               else
               if ($page === '3ca88io1')
               {
-                include 'Pages/StudentPanel/cvupload_final.php';
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/StudentPanel/cvupload.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
               }
               else
               if ($page === '4ib63ty7')
               {
-                include 'Pages/Common/inbox.php';
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/StudentPanel/load_academics.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
               }
               else
               if ($page === '5dp21t6b')
               {
-                include 'Pages/Common/developers.php';
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/developers.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
               }
               else
               if ($page === '6st16yz9')
               {
-                include 'Pages/Common/settings.php';
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/settings.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
+              }
+              else
+              if ($page === '73bwr8fx')
+              {
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/update_dp.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
               }
               else
               if ($page === '7pr8yhf0')
               {
-                include 'Pages/Common/profile.php';
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/profile.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
               }
               else
               if ($page === '8cmp43e2')
               {
-                include 'Pages/Common/compose.php';
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/compose.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
               }
               else
               if ($page === '9rmm32c6')
               {
-                include 'Pages/Common/read-mail.php';
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/update_password.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
+              }
+              else
+              if ($page === '0kdi43c7')
+              {
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/load_profile.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
+              }
+              else
+              if ($page === '17yxc0pq')
+              {
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/update_email.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
+              }
+              else
+              if ($page === '69qrt3lw')
+              {
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/update_mobile.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
+              }
+              else
+              if ($page === '81fgc3tx')
+              {
+                  include 'Pages/Common/logout.php';
               }
               else
               {
@@ -344,9 +488,6 @@
     </aside>
       
 
-        <!-- jQuery 2.1.4 -->
-    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
-
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -369,6 +510,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
     <script src="plugins/fullcalendar/fullcalendar.min.js"></script>
+    
+    <!-- FormValidator Refernece -->
+    <script type="text/javascript" src="js/formValidator.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
 
 
     

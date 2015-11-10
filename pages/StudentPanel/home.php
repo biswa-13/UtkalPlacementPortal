@@ -12,11 +12,11 @@
             <div class="box-header with-border">
               <h3 class="box-title">
 
-                <p>Utkal Placement portal is connecting you with University Placement Cell. A platform that decreases the gap between the Students and Placement cell and Let you more interactive about recruitment process.</p>
+                <p><font size=3>Utkal Placement portal is connecting you with University Placement Cell. A platform that decreases the gap between the Students and Placement cell and Let you more interactive about recruitment process.</font></p>
 
-                <p> From keeping you updated on Utkal Placement to answering your queries and helping you explore a world of opportunities.</p>
+                <p><font size=3>From keeping you updated on Utkal Placement to answering your queries and helping you explore a world of opportunities.</font></p>
 
-                <p> So, go ahead! Explore opportunities. Experience Certainty.  </p>
+                <p><font size=3>So, go ahead! Explore opportunities. Experience Certainty.</font></p>
               </h3>
 
               <br><br>

@@ -1,3 +1,25 @@
+<?php
+  if (isset($_POST['emailid']) && isset($_POST['password']))
+  {
+    $email = $_POST['emailid'];
+    $password = $_POST['password'];
+
+    if (!empty($email) && !empty($password))
+    {
+      check_user_login($email, $password);
+    }
+    else
+    {
+      $error_msg =  "Please enter both email and password.";
+      echo  $error_msg;
+    }
+  }
+
+  if (isset($_GET['msg']))
+  {
+    print_r($_GET['msg']);
+  }
+?>
 
 <!DOCTYPE html>
 <html>
@@ -6,6 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="images/favicon.ico" type="images/gif" sizes="16x16">
     <title>Utkal Placement Portal</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -19,12 +42,16 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
 
+    <!-- jQuery 2.1.4 -->
+    <script type="text/javascript" src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
   </head>
   <body class="hold-transition login-page">
     <div class="login-box">
@@ -33,13 +60,13 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-        <form action="" method="post">
+        <form action="<?php echo $current_file;?>" method="POST">
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email ID">
+            <input type="email" class="form-control" placeholder="Email ID" name="emailid">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" class="form-control" placeholder="Password" name="password">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
@@ -83,13 +110,13 @@
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
-
-    <!-- jQuery 2.1.4 -->
-    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <script src="plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Common Custom Javascript Files -->
+    <script type="text/javascript" src="js/common.js"></script>
     <script>
       $(function () {
         $('input').iCheck({
@@ -98,6 +125,11 @@
           increaseArea: '20%' // optional
         });
       });
+      $(document).ready(function(){
+        console.log("Jquery is working @ login_page.php");
+        //showInformation("Calling showInformation() @ login_page.php");
+      })
     </script>
+
   </body>
 </html>

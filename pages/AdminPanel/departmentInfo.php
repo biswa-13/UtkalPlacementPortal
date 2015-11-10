@@ -1,7 +1,6 @@
 <!-- Start : Including Necessary Files -->
-<?php 
-  require 'Pages/Common/showInformation.php';
-?>
+
+
 <!-- Finish : Including Necessary Files -->
 
 <!-- Start : Parent Container -->
@@ -59,77 +58,86 @@
 </div>
 <!-- Finish : Parent Container -->
 
-<!-- Start : Rendering Of  Modal-->
  <div class="modal" id="deptModal">
+<!-- Start : Rendering Of  Modal-->
   <div class="modal-dialog">
     <div class="modal-content " id="taskStep1">
       <div class="modal-header">
         <center><h3>Add New Department</h3></center>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal">
+        <form class="form-horizontal" id="addDeptForm">
           <div class="form-group">
-            <label for="deptName" class="col-sm-3 control-label">Dept. Name</label>
+            <p class="centerText"><span class="valueRequired">* Marked fields are mandatory fields .</span></p>
+            <label for="deptName" class="col-sm-3 control-label">Dept. Name <span class="valueRequired">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="deptName" placehoder="Department Name">
+              <input type="text" class="form-control" mandatory ="yes" id="deptName" placehoder="Department Name">
             </div>
           </div>
           <div class="form-group">
-            <label for="deptName" class="col-sm-3 control-label">Dept. Type</label>
+            <label for="deptName" class="col-sm-3 control-label">Dept. Type <span class="valueRequired">*</span></label>
             <div class="col-sm-9">
-              <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+              <select class="form-control select2 select2-hidden-accessible" id="deptType" style="width: 100%;" tabindex="-1" aria-hidden="true">
                 <option>-- Select One --</option>
                 <option>Post Graduate</option>
+                <option>Graduation</option>
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="deptName" class="col-sm-3 control-label">Head Name</label>
+            <label for="deptName" class="col-sm-3 control-label">Head Name <span class="valueRequired">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="deptName" placehoder="Department Name">
+              <input type="text" class="form-control " mandatory ="yes" id="headName" placehoder="Head Name">
             </div>
           </div>
           <div class="form-group">
-            <label for="deptName" class="col-sm-3 control-label">Head Contact Number</label>
+            <label for="deptName" class="col-sm-3 control-label">Head Contact Number <span class="valueRequired">*</span></label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="deptName" placehoder="Department Name">
+              <input type="number" class="form-control " numberType = "mobile" mandatory ="yes" id="headContactNo" placehoder="Head Contact Number">
             </div>
           </div>
           <div class="form-group">
-            <label for="deptName" class="col-sm-3 control-label">Head Email Id</label>
+            <label for="deptName" class="col-sm-3 control-label">Head Email Id <span class="valueRequired">*</span></label>
             <div class="col-sm-9">
-              <input type="email" class="form-control" id="deptName" placehoder="Department Name">
+              <input type="email" class="form-control " mandatory ="yes" id="headEmailId" placehoder="Head Email Id">
             </div>
           </div>
           <div class="form-group">
-            <label for="deptName" class="col-sm-3 control-label">Dept. Contact Nmber </label>
+            <label for="deptName" class="col-sm-3 control-label">Dept. Contact Number <span class="valueRequired">*</span></label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="deptName" placehoder="Department Name">
+              <input type="number" class="form-control " mandatory ="yes" id="deptContactNo" placehoder="Dept. Contact Number">
             </div>
           </div>
           <div class="form-group">
-            <label for="deptName" class="col-sm-3 control-label">Dept. Email Id</label>
+            <label for="deptName" class="col-sm-3 control-label">Dept. Email Id <span class="valueRequired">*</span></label>
             <div class="col-sm-9">
-              <input type="email" class="form-control" id="deptName" placehoder="Department Name">
+              <input type="email" class="form-control " mandatory ="yes" id="deptEmailId" placehoder="Dept. Email Id">
             </div>
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-         <center>
-            <button type="submit" class="btn btn-primary" id="deptSubmitBtn" data-toggle="modal" onClick = "showInformation('New Dept Added ..')">Submit  <i class="fa fa-check"></i></button>
+      <div class="modal-footer" >
+         <center><div id="deptModalFooter">
+            <button type="submit" class="btn btn-primary" id="deptSubmitBtn" data-toggle="modal" onClick = "addDeptInfo('addDeptForm')">Submit  <i class="fa fa-check"></i></button>
             <button type="reset" class="btn btn-warning" > Reset <i class="glyphicon glyphicon-refresh"></i></button>
             <button type="button" class="btn btn-danger"  data-dismiss="modal">Close <i class="fa fa-times"></i></button>
             
-        </center>
+        </div></center>
       </div>
     </div>
   </div>
  </div>
 <!-- Finish : Rendering Of  Modal-->
 <script type="text/javascript">
-  function showInformation(text){
-    console.log("text",text);
-    $("#infoModal").modal("show");
+  function addDeptInfo(formName){
+    
+    if(formValidator(formName)){
+      //$("#infoModal").modal("show");
+      //$("#infoModalBody").html("<b>New Dep Added Successfully ...</b>");
+      showInformation("<b>New Dep Added Successfully ...</b>");
+    }
+ /*   $("#deptSubmitBtn").hide();
+    $("#deptModalFooter").append('<button type="submit" class="btn btn-primary" id="deptUpdateBtn" data-toggle="modal" onClick = "getInfo()">Update  <i class="fa fa-check"></i></button>');
+  */
   }
 </script>

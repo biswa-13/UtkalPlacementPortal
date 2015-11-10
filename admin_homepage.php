@@ -1,9 +1,24 @@
 <?php
+   require "Pages/Common/core.php";
+   require 'Pages/Common/showInformation.php';
+
+  $user_id = $_SESSION['user_id'];
+  $user_name = $_SESSION['user_name'];
+  $mobileno = $_SESSION['user_mobile'];
+
+  activate_user($user_id);
+
   if(isset($_GET['pid'])){
     $page = $_GET['pid'];
   }else{
     $page = 'nb81io9a';
   }
+
+  if (isset($_SESSION['cv_ext']))
+  {
+    $cv_ext = $_SESSION['cv_ext'];
+  }
+
 
 ?>
 <!DOCTYPE html>
@@ -38,11 +53,17 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+    <!-- Custom Style File  -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
+    
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
+  <noscript>
+  This page needs JavaScript activated to work. 
+  </noscript>
     <div class="wrapper">
 
       <header class="main-header">
@@ -360,5 +381,8 @@
     <script src="dist/js/pages/dashboard2.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    <!-- FormValidator Refernece -->
+    <script type="text/javascript" src="js/formValidator.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
   </body>
 </html>

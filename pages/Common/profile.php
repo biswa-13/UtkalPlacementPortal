@@ -1,3 +1,56 @@
+   <script type=text/javascript>
+      function validate_profile()
+      {
+          if (!document.getElementById("inputFName").value)
+          {
+              alert("Please enter your First Name.");
+              document.getElementById("inputFName").focus();
+              return false;
+          }
+          if (!document.getElementById("inputLName").value)
+          {
+              alert("Please enter your Last Name.");
+              document.getElementById("inputLName").focus();
+              return false;
+          }
+          if (!document.getElementById("inputDOB").value)
+          {
+              alert("Please enter your Date of Birth.");
+              document.getElementById("inputDOB").focus();
+              return false;
+          }
+          if (!document.getElementById("inputFatherName").value)
+          {
+              alert("Please enter your Father Name.");
+              document.getElementById("inputFatherName").focus();
+              return false;
+          }
+          if (!document.getElementById("inputMotherName").value)
+          {
+              alert("Please enter your Mother Name.");
+              document.getElementById("inputMotherName").focus();
+              return false;
+          }
+          if (!document.getElementById("presentaddress").value)
+          {
+              alert("Please enter your Present Address.");
+              document.getElementById("presentaddress").focus();
+              return false;
+          }
+          if (!document.getElementById("permanentaddress").value)
+          {
+              alert("Please enter your Permanent Address.");
+              document.getElementById("permanentaddress").focus();
+              return false;
+          }
+      }
+   </script>
+    <?php
+      if (isset($_GET['msg']))
+      {
+          print_r($_GET['msg']);
+      }
+    ?>
     <div>
         <section class="content-header">
           <h1>
@@ -31,75 +84,63 @@
                       <div class="form-group">
                         <label for="inputFName" class="col-sm-2 control-label">First Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputFName" placeholder="First Name" readonly>
+                          <input type="text" class="form-control" id="FName" placeholder="First Name" readonly value="<?php echo getuserfield_profile('first_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputMName" class="col-sm-2 control-label">Middle Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputMName" placeholder="Middle Name" readonly>
+                          <input type="text" class="form-control" id="MName" placeholder="Middle Name" readonly value="<?php echo getuserfield_profile('mid_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputLName" class="col-sm-2 control-label">Last Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputLName" placeholder="Last Name" readonly>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email" readonly>
+                          <input type="text" class="form-control" id="LName" placeholder="Last Name" readonly value="<?php echo getuserfield_profile('last_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputDOB" class="col-sm-2 control-label">Date of Birth</label>
                         <div class="col-sm-10">
-                          <input type="date" class="form-control" id="inputDOB" placeholder="DD/MM/YYYY" readonly>
+                          <input type="date" class="form-control" id="DOB" placeholder="DD/MM/YYYY" readonly value="<?php echo getuserfield_profile('dob', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
+                        <label for="inputGender" class="col-sm-2 control-label">Gender</label>
                         <div class="col-sm-10">
-                          <input type="radio" name="gender" value="male" checked> Male <br>
-                          <input type="radio" name="gender" value="female"> Female
+                          <input type="radio" name="gender" value="Male" <?php echo (getuserfield_profile('gender',$user_id)=='M')?'checked':'';?>> Male <br>
+                          <input type="radio" name="gender" value="Female" <?php echo (getuserfield_profile('gender',$user_id)=='F')?'checked':'';?>> Female
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputLName" class="col-sm-2 control-label">Father's Name</label>
+                        <label for="inputFatherName" class="col-sm-2 control-label">Father's Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputFatherName" placeholder="Father's Name" readonly>
+                          <input type="text" class="form-control" id="FatherName" placeholder="Father's Name" readonly value="<?php echo getuserfield_profile('father_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputLName" class="col-sm-2 control-label">Mother's Name</label>
+                        <label for="inputMotherName" class="col-sm-2 control-label">Mother's Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputMotherName" placeholder="Mother's Name" readonly>
+                          <input type="text" class="form-control" id="MotherName" placeholder="Mother's Name" readonly value="<?php echo getuserfield_profile('mother_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputExperience" class="col-sm-2 control-label">Present Address</label>
+                        <label for="presentaddress" class="col-sm-2 control-label">Present Address</label>
                         <div class="col-sm-10">
-                          <textarea class="form-control" id="presentaddress" placeholder="Present Address" readonly></textarea>
+                          <textarea class="form-control" id="vpresentaddress" placeholder="Present Address" readonly ><?php echo getuserfield_profile('present_add', $user_id); ?></textarea>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-2 control-label">Same as Permanent Address</label>
+                        <label for="permanentaddress" class="col-sm-2 control-label">Permanent Address</label>
                         <div class="col-sm-10">
-                          <input type="checkbox" name="sameaddr" value="yes"> 
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputExperience" class="col-sm-2 control-label">Permanent Address</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="permanentaddress" placeholder="Permanent Address" readonly></textarea>
+                          <textarea class="form-control" id="vpermanentaddress" placeholder="Permanent Address" readonly ><?php echo getuserfield_profile('permanent_add', $user_id); ?></textarea>
                         </div>
                       </div>
                       <br>
                     </form>
                   </div><!-- /.tab-pane -->
                   <div class="tab-pane" id="update">
-                    <form class="form-horizontal box  box-primary">
+                    <form class="form-horizontal box  box-primary" action="student_homepage.php?pid=0kdi43c7" method="post">
                       <br>
                       <div class="box-header with-border">
                         <h3 class="box-title">Update Your Profile</h3>
@@ -108,56 +149,50 @@
                       <div class="form-group">
                         <label for="inputFName" class="col-sm-2 control-label">First Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputFName" placeholder="First Name">
+                          <input type="text" class="form-control" id="inputFName" name="inputFName" placeholder="First Name" value="<?php echo getuserfield_profile('first_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputMName" class="col-sm-2 control-label">Middle Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputMName" placeholder="Middle Name">
+                          <input type="text" class="form-control" id="inputMName" name="inputMName" placeholder="Middle Name" value="<?php echo getuserfield_profile('mid_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputLName" class="col-sm-2 control-label">Last Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputLName" placeholder="Last Name">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                          <input type="text" class="form-control" id="inputLName" name="inputLName" placeholder="Last Name" value="<?php echo getuserfield_profile('last_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputDOB" class="col-sm-2 control-label">Date of Birth</label>
                         <div class="col-sm-10">
-                          <input type="date" class="form-control" id="inputDOB" placeholder="DD/MM/YYYY">
+                          <input type="date" class="form-control" id="inputDOB" name="inputDOB" placeholder="DD/MM/YYYY" value="<?php echo getuserfield_profile('dob', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputExperience" class="col-sm-2 control-label">Gender</label>
+                        <label for="inputGender" class="col-sm-2 control-label">Gender</label>
                         <div class="col-sm-10">
-                          <input type="radio" name="gender" value="male" checked> Male <br>
-                          <input type="radio" name="gender" value="female"> Female
+                          <input type="radio" name="inputGender" value="Male" <?php echo (getuserfield_profile('gender',$user_id)=='M')?'checked':'';?>> Male <br>
+                          <input type="radio" name="inputGender" value="Female" <?php echo (getuserfield_profile('gender',$user_id)=='F')?'checked':'';?>> Female
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputLName" class="col-sm-2 control-label">Father's Name</label>
+                        <label for="inputFatherName" class="col-sm-2 control-label">Father's Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputFatherName" placeholder="Father's Name">
+                          <input type="text" class="form-control" id="inputFatherName" name="inputFatherName"  placeholder="Father's Name" value="<?php echo getuserfield_profile('father_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputLName" class="col-sm-2 control-label">Mother's Name</label>
+                        <label for="inputMotherName" class="col-sm-2 control-label">Mother's Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputMotherName" placeholder="Mother's Name">
+                          <input type="text" class="form-control" id="inputMotherName" name="inputMotherName" placeholder="Mother's Name" value="<?php echo getuserfield_profile('mother_name', $user_id); ?>">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputExperience" class="col-sm-2 control-label">Present Address</label>
+                        <label for="presentaddress" class="col-sm-2 control-label">Present Address</label>
                         <div class="col-sm-10">
-                          <textarea class="form-control" id="presentaddress" placeholder="Present Address"></textarea>
+                          <textarea class="form-control" id="presentaddress" name="presentaddress" placeholder="Present Address" ><?php echo getuserfield_profile('present_add', $user_id); ?></textarea>
                         </div>
                       </div>
                       <div class="form-group">
@@ -167,14 +202,15 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputExperience" class="col-sm-2 control-label">Permanent Address</label>
+                        <label for="permanentaddress" class="col-sm-2 control-label">Permanent Address</label>
                         <div class="col-sm-10">
-                          <textarea class="form-control" id="permanentaddress" placeholder="Permanent Address"></textarea>
+                          <textarea class="form-control" id="permanentaddress" name="permanentaddress" placeholder="Permanent Address" ><?php echo getuserfield_profile('permanent_add', $user_id); ?></textarea>
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
+                          <button type="submit" class="btn btn-primary" onclick="return validate()">Submit</button>&nbsp; &nbsp; &nbsp; &nbsp;
+                          <button type="reset" class="btn btn-danger btn-flat">Clear</button>
                         </div>
                       </div>
                       <br>
@@ -187,3 +223,11 @@
 
         </section>
     </div>
+    
+   <script>
+      $(document).ready(function(){
+        $("#update").submit(function(){
+          $("#infoModal").modal("show");
+        });
+    });
+    </script>
