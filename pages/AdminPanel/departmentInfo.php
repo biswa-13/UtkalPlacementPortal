@@ -133,7 +133,7 @@
 <script type="text/javascript">
   function addDepartment(formId){
     if(formValidator(formId)){
-      event.preventDefault();
+      //event.preventDefault();
       var elemName = "#"+formId;
       var formData = {};
       formData.deptName = $("#deptName").val() ;
