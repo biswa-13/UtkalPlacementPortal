@@ -1,6 +1,5 @@
 <!-- Start : Including Necessary Files -->
 
-
 <!-- Finish : Including Necessary Files -->
 
 <!-- Start : Parent Container -->
@@ -61,12 +60,12 @@
  <div class="modal" id="deptModal">
 <!-- Start : Rendering Of  Modal-->
   <div class="modal-dialog">
-    <div class="modal-content " id="taskStep1">
+    <div class="modal-content ">
       <div class="modal-header">
         <center><h3>Add New Department</h3></center>
       </div>
-      <div class="modal-body">
-        <form class="form-horizontal" id="addDeptForm">
+      <div class="modal-body"><!-- action = "admin_homepage.php?pid=xi905sy2" -->
+        <form class="form-horizontal" id="addDeptForm"  method="post">
           <div class="form-group">
             <p class="centerText"><span class="valueRequired">* Marked fields are mandatory fields .</span></p>
             <label for="deptName" class="col-sm-3 control-label">Dept. Name <span class="valueRequired">*</span></label>
@@ -80,6 +79,7 @@
               <select class="form-control select2 select2-hidden-accessible" id="deptType" style="width: 100%;" tabindex="-1" aria-hidden="true">
                 <option>-- Select One --</option>
                 <option>Post Graduate</option>
+                <option>Self Finance</option>
                 <option>Graduation</option>
               </select>
             </div>
@@ -117,9 +117,9 @@
         </form>
       </div>
       <div class="modal-footer" >
-         <center><div id="deptModalFooter">
-            <button type="submit" class="btn btn-primary" id="deptSubmitBtn" data-toggle="modal" onClick = "addDeptInfo('addDeptForm')">Submit  <i class="fa fa-check"></i></button>
-            <button type="reset" class="btn btn-warning" > Reset <i class="glyphicon glyphicon-refresh"></i></button>
+         <center><div id="deptModalFooter"><!-- onClick = "formValidator('addDeptForm')" -->
+            <button type="submit" class="btn btn-primary" id="deptSubmitBtn"  onClick = "addDepartment('addDeptForm')">Submit  <i class="fa fa-check"></i></button>
+            <button type="reset" class="btn btn-warning" onClick = "resetForm('addDeptForm')"> Reset <i class="glyphicon glyphicon-refresh"></i></button>
             <button type="button" class="btn btn-danger"  data-dismiss="modal">Close <i class="fa fa-times"></i></button>
             
         </div></center>
@@ -128,16 +128,46 @@
   </div>
  </div>
 <!-- Finish : Rendering Of  Modal-->
+<!-- Start : Rendering Of DataTable -->
+<!-- Finish : Rendering Of DataTable -->
 <script type="text/javascript">
-  function addDeptInfo(formName){
-    
-    if(formValidator(formName)){
-      //$("#infoModal").modal("show");
-      //$("#infoModalBody").html("<b>New Dep Added Successfully ...</b>");
-      showInformation("<b>New Dep Added Successfully ...</b>");
+  function addDepartment(formId){
+    if(formValidator(formId)){
+      event.preventDefault();
+      var elemName = "#"+formId;
+      var formData = {};
+      formData.deptName = $("#deptName").val() ;
+      formData.deptType = $("#deptType").val();
+      formData.headName = $("#headName").val();
+      formData.headEmailId = $("#headEmailId").val();
+      formData.headContactNo = $("#headContactNo").val();
+      formData.deptEmailId = $("#deptEmailId").val();
+      formData.deptContactNo = $("#deptContactNo").val();
+
+      var data = {"reqId" : 13,"formData" : formData};
+      $.ajax({
+        url : "Pages/Common/ajaxHandler.php",
+        type : "post",
+        data : data,
+        success : function(data, status){
+          console.log("data -->",data);
+          if(data == "ok"){
+            showInformation("<b>New Depatrtment Added Succesfully .</b>");
+            resetForm('addDeptForm');
+            $("#deptModal").modal("hide");
+          }else{
+            showWarning("<b>! Failed to Add New Department .</b>");
+          }
+        },
+        error : function(){
+          showWarning("<b>!!! Failed to Add New Department .</b>");
+          console.log("!!! Ajax Fails @ Admin/departmentInfo .");
+
+        }
+      })
+
     }
- /*   $("#deptSubmitBtn").hide();
-    $("#deptModalFooter").append('<button type="submit" class="btn btn-primary" id="deptUpdateBtn" data-toggle="modal" onClick = "getInfo()">Update  <i class="fa fa-check"></i></button>');
-  */
+    
   }
+
 </script>

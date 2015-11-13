@@ -64,10 +64,12 @@ function formValidator(formName){
 	//console.log($(elemName).html());
 
 	if(requiredFieldLeft == true){
-		$("#infoModal").modal("show");
+		//$("#infoModal").modal("show");
 		var noticeText = "<span class='valueRequired'>Note : Following field values are Either left Blank or Have Invalid Input ..</span>"
-		$("#infoModalBody").html(noticeText + messageArray);
+		//$("#infoModalBody").html(noticeText + messageArray);
 		//console.log("messageArray -->",messageArray);
+		showWarning(noticeText+ messageArray);
+		return false;
 	}else{
 		return true;
 	}

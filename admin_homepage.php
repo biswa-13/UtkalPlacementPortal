@@ -298,22 +298,23 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
           <?php 
-          //echo("page -- ".$page);
-          switch ($page) {
-            case 'nb81io9a':
+         // echo("page -- ".$page);
+            if ($page == 'nb81io9a'){
               include('Pages/AdminPanel/adminDashboard.php');
-              break;
-            case 'xi905sy1':
+            }
+            else if ($page ==  'xi905sy1'){
               include('Pages/AdminPanel/departmentInfo.php');
-              break;
-            case 'i29wls18':
+            }
+            else if ($page ==  'xi905sy2'){
+              include('Pages/AdminPanel/addDepartmentInfo.php');
+            }
+            else if ($page == 'i29wls18'){
               include('Pages/AdminPanel/employerInfo.php');
-              break;
+            }
             
-            default:
-              include('demo.php');
-              break;
-          }
+            else{
+              include('Pages/AdminPanel/adminDashboard.php');
+            }
           
         ?>
       
@@ -381,6 +382,9 @@
     <script src="dist/js/pages/dashboard2.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    <!-- DataTables -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
     <!-- FormValidator Refernece -->
     <script type="text/javascript" src="js/formValidator.js"></script>
     <script type="text/javascript" src="js/common.js"></script>

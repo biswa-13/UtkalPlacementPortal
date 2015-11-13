@@ -6,5 +6,6 @@
 	session_start();
 	require "dbconnect.php";
 	require "backendfunctions.php";
+	require "dbFunctions.php";
 	$current_file = $_SERVER['SCRIPT_NAME'];
 ?>
