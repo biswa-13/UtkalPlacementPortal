@@ -309,9 +309,13 @@ function showDeptInformation(data){
   function addDepartment(formId){
     formId = 'addDeptForm';
     if(formValidator(formId)){
+<<<<<<< HEAD
       event.preventDefault();
       var formData = getDeptFormData(formId);
       /*
+=======
+      //event.preventDefault();
+>>>>>>> origin/master
       var elemName = "#"+formId;
       var formData = {};
       formData.deptName = $("#deptName").val() ;
