@@ -4,8 +4,6 @@
 	$tmp_name = $_FILES['file']['tmp_name'];
 	$filesize = $_FILES['file']['size'];
 	$maxsize = 5242880;
-
-	$_SESSION['cv_ext'] = $extension;
 	
 	if (isset($name))
 	{
@@ -17,16 +15,21 @@
 				if ($filesize < $maxsize)
 				{
 					$location = 'uploads/';
-					$newname = $user_id.'_cv';
+					$newname = $username.'_cv';
 					if (file_exists('uploads/'.$newname.'.doc'))
 					{
-						$newname1 = $user_id . '_cv1';
+						$newname1 = $username . '_cv1';
 						if (move_uploaded_file($tmp_name, $location.$newname1.'.'.$extension))
 						{							
-							$msg = "File successfully uploaded.";
-							unlink($location.$newname.'.doc');
-							rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
-							header("Location: student_homepage.php?pid=2ac17nw3&academic_msg=$msg");
+							if(unlink($location.$newname.'.doc'))	{
+								rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
+								$msg = "File successfully uploaded.";
+								header("Location: student_homepage.php?pid=2ac17nw3&academic_msg=$msg");
+							}
+							else{
+								$msg = "Sorry, file not uploaded.";
+								header("Location: student_homepage.php?pid=2ac17nw3&academic_msg=$msg");
+							}
 						}
 						else
 						{
@@ -36,14 +39,18 @@
 					}
 					else if (file_exists('uploads/'.$newname.'.docx'))
 					{
-						
+						$newname1 = $username . '_cv1';
 						if (move_uploaded_file($tmp_name, $location.$newname1.'.'.$extension))
 						{
-							$newname = $user_id . '_cv';
-							$msg = "File successfully uploaded.";
-							unlink($location.$newname.'.docx');
-							rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
-							header("Location: student_homepage.php?pid=2ac17nw3&academic_msg=$msg");
+							if(unlink($location.$newname.'.docx'))	{
+								rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
+								$msg = "File successfully uploaded.";
+								header("Location: student_homepage.php?pid=2ac17nw3&academic_msg=$msg");
+							}
+							else{
+								$msg = "Sorry, file not uploaded.";
+								header("Location: student_homepage.php?pid=2ac17nw3&academic_msg=$msg");
+							}
 						}
 						else
 						{
@@ -53,14 +60,18 @@
 					}
 					else if (file_exists('uploads/'.$newname.'.pdf'))
 					{
-						
+						$newname1 = $username . '_cv1';
 						if (move_uploaded_file($tmp_name, $location.$newname1.'.'.$extension))
 						{
-							$newname = $user_id . '_cv';
-							$msg = "File successfully uploaded.";
-							unlink($location.$newname.'.pdf');
-							rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
-							header("Location: student_homepage.php?pid=2ac17nw3&academic_msg=$msg");
+							if(unlink($location.$newname.'.pdf'))	{
+								rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
+								$msg = "File successfully uploaded.";
+								header("Location: student_homepage.php?pid=2ac17nw3&academic_msg=$msg");
+							}
+							else{
+								$msg = "Sorry, file not uploaded.";
+								header("Location: student_homepage.php?pid=2ac17nw3&academic_msg=$msg");
+							}
 						}
 						else
 						{
@@ -70,7 +81,7 @@
 					}
 					else
 					{
-						$newname = $user_id . '_cv';
+						$newname = $username . '_cv';
 						if (move_uploaded_file($tmp_name, $location.$newname.'.'.$extension))
 						{							
 							$msg = "File successfully uploaded.";

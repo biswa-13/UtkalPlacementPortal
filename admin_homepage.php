@@ -1,26 +1,78 @@
 <?php
-   require "Pages/Common/core.php";
-   require 'Pages/Common/showInformation.php';
+  require "Pages/Common/core.php";
+  require 'Pages/Common/showInformation.php';
 
   $user_id = $_SESSION['user_id'];
-  $user_name = $_SESSION['user_name'];
-  $mobileno = $_SESSION['user_mobile'];
-
   activate_user($user_id);
 
-  if(isset($_GET['pid'])){
+  $username = getuserfield_settings('user_name', $user_id);
+
+  if (isset($_GET['pid']))
+  {
     $page = $_GET['pid'];
-  }else{
+  }
+  else
+  {
     $page = 'nb81io9a';
   }
 
-  if (isset($_SESSION['cv_ext']))
+  if (file_exists('uploads/'.$username.'_dp.jpg'))
   {
-    $cv_ext = $_SESSION['cv_ext'];
+    $dp_ext = 'jpg';
+    $dp_name = 'uploads/'.$username.'_dp.jpg';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.JPG'))
+  {
+    $dp_ext = 'JPG';
+    $dp_name = 'uploads/'.$username.'_dp.JPG';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.jpeg'))
+  {
+    $dp_ext = 'jpeg';
+    $dp_name = 'uploads/'.$username.'_dp.jpeg';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.JPEG'))
+  {
+    $dp_ext = 'JPEG';
+    $dp_name = 'uploads/'.$username.'_dp.JPEG';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.PNG'))
+  {
+    $dp_ext = 'PNG';
+    $dp_name = 'uploads/'.$username.'_dp.PNG';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.png'))
+  {
+    $dp_ext = 'png';
+    $dp_name = 'uploads/'.$username.'_dp.png';
+  }
+  else
+  {
+    $dp_name = 'uploads/default_user_icon.jpg';
   }
 
+  if(file_exists('uploads/'.$username.'_cv.doc')) {
+    $cv_ext = 'doc';
+    $cv_name = 'uploads/'.$username.'_cv.doc';
+  }
+
+  elseif(file_exists('uploads/'.$username.'_cv.docx'))  {
+    $cv_ext = 'docx';
+    $cv_name = 'uploads/'.$username.'_cv.docx';
+  }
+
+  elseif(file_exists('uploads/'.$username.'_cv.pdf'))  {
+    $cv_ext = 'pdf';
+    $cv_name = 'uploads/'.$username.'_cv.pdf';
+  }
+ 
+  else
+  {
+    $cv_name = 'uploads/cv_upload.jpg';
+  }
 
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,25 +80,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="images/favicon.ico" type="images/gif" sizes="16x16">
     <title>Utkal Placement Portal</title>
-    <!-- Tell the browser to be responsive to screen width -->
+
+    <noscript>
+      <meta http-equiv="Refresh" content="0;Pages/Common/enableJavaScript.php">
+      <?php if(basename($_SERVER['REQUEST_URI']) != "Pages/Common/enableJavaScript.php"){ ?>
+          <meta http-equiv="Refresh" content="0;Pages/Common/enableJavaScript.php">
+      <?php } ?>
+   </noscript>
+    
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
+
+        <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- jvectormap -->
+    <!-- fullCalendar 2.2.5-->
+    <link rel="stylesheet" href="plugins/fullcalendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="plugins/fullcalendar/fullcalendar.print.css" media="print">
+    
     <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-    <!-- Files Required for Stackable Modals -->
-    <!--<link href="plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+    <!-- iCheck -->
     <link href="plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>-->
-
+    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,22 +120,27 @@
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
+    <!--Styles required for DataTable -->
+    <link rel="stylesheet" type="text/css" href="plugins/datatables/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/datatables/dataTables.bootstrap.css">
+
+
     
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
   <noscript>
   This page needs JavaScript activated to work. 
   </noscript>
-    <div class="wrapper">
+    <div class="wrapper" style="margin-top:-20px;">
 
       <header class="main-header">
 
         <!-- Logo -->
         <a href="student_homepage.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><img src="images/uulogo.gif" height="50" width="50"></span>
+          <span class="logo-mini"><img src="images/uulogo.png" height="50" width="50"></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><img src="images/uulogo.gif" height="45" width="45"><b>Utkal University</b></span>
+          <span class="logo-lg"><img src="images/uulogo.png" height="35" width="35">&nbsp;<b>Utkal University</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -86,6 +153,12 @@
             <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
+              <li class="nav navbar-nav">
+                 <a href="admin_homepage.php?pid=nb81io9a" class="logo-lg">
+                   <span class="fa fa-home"></span>
+                 </a>
+              </li>
+
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
@@ -168,16 +241,16 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Admin's Name</span>
+                  <img id="toprightimg" src="<?php echo $dp_name;?>" class="user-image" alt="User Image">
+                  <span class="hidden-xs"><?php echo getuserfield_settings('user_name', $user_id); ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img id="toprightdropdownimg" src="<?php echo $dp_name;?>" class="img-circle" alt="User Image">
                     <p>
-                      Admin's Name
-                      <small>Registered since Nov. 2012</small>
+                      <?php echo get_name($user_id); ?>
+                      <small>Registered since <?php echo getuserfield_settings('today_date', $user_id); ?></small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -194,8 +267,8 @@
                   </li> -->
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left"><a href="#" class="btn btn-info "><i class="fa fa-key"></i> Change Password</a></div>
-                    <div class="pull-right"><a href="#" class="btn btn-default "><i class="fa fa-power-off"></i> Sign Out</a></div>
+                    <div class="pull-left"><a href="admin_homepage.php?pid=6st16yz9" class="btn btn-info "><i class="fa fa-cog"></i>&nbsp; Settings</a></div>
+                    <div class="pull-right"><a href="admin_homepage.php?pid=81fgc3tx" class="btn btn-default "><i class="fa fa-power-off"></i> Sign Out</a></div>
                     <!-- <div class="pull-left">
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
@@ -221,10 +294,10 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+              <img id="topleftimg" src="<?php echo $dp_name;?>" class="img img-circle user-image" alt="User Image" style="height : 50px !important;width:: 50px !important;">
             </div>
             <div class="pull-left info">
-              <p>Admin's Name</p>
+              <p><?php echo get_name($user_id); ?></p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -259,11 +332,11 @@
             </li>
             <li class=" treeview">
               <a href="admin_homepage.php?pid=i29wls18">
-                <i class="fa fa-user-secret"></i> <span>Employeers</span></i>
+                <i class="fa fa-user-secret"></i> <span>Employers</span></i>
               </a>
             </li>
             
-            <li>
+            <!-- <li>
               <a href="#">
                 <i class="fa fa-calendar"></i> <span>Calendar</span>
                 <small class="label pull-right bg-red">3</small>
@@ -273,21 +346,21 @@
               <a href="#">
                 <i class="fa fa-envelope"></i> <span>Inbox</span>
                 <small class="label pull-right bg-yellow">12</small>
-              </a>
-            </li>
+              </a>      
+            </li> -->
             <li class=" treeview">
-              <a href="academics.php">
+              <a href="admin_homepage.php?pid=7pr8yhf0">
                 <i class="fa fa-user"></i> <span>Profile</span></i>
               </a>
             </li>
 
             <li class=" treeview">
-              <a href="academics.php">
+              <a href="admin_homepage.php?pid=6st16yz9">
                 <i class="fa fa-cog"></i> <span>Account Settings</span></i>
               </a>
             </li>
             <li class=" treeview">
-              <a href="academics.php">
+              <a href="admin_homepage.php?pid=kt83cv2z">
                 <i class="fa fa-star"></i> <span>Developer's Page</span></i>
               </a>
             </li>            
@@ -299,6 +372,7 @@
       <div class="content-wrapper">
           <?php 
          // echo("page -- ".$page);
+          if (check_activation($user_id) == 1){
             if ($page == 'nb81io9a'){
               include('Pages/AdminPanel/adminDashboard.php');
             }
@@ -311,18 +385,52 @@
             else if ($page == 'i29wls18'){
               include('Pages/AdminPanel/employerInfo.php');
             }
-            
+            else if ($page == 'kt83cv2z'){
+              include('Pages/Common/developers.php');
+            }
+            else if ($page === '6st16yz9')
+            {
+              if (check_activation($user_id) == 1)
+              {
+                include 'Pages/Common/settings.php';
+              }
+              else
+              {
+                include 'Pages/Common/logout.php';
+              }
+            }
+            else if ($page === '7pr8yhf0')
+            {
+              if (check_activation($user_id) == 1)
+              {
+                include 'Pages/Common/profile.php';
+              }
+              else
+              {
+                include 'Pages/Common/logout.php';
+              }
+            }
+
+            else if ($page === '81fgc3tx')
+            {
+                include 'Pages/Common/logout.php';
+            }
             else{
               include('Pages/AdminPanel/adminDashboard.php');
             }
+
+          }else{
+            include 'Pages/Common/logout.php';
+          }
+            
           
         ?>
       
       </div><!-- /.content-wrapper -->
 
-      <footer class="main-footer">
+    <footer class="main-footer">
         <center>
-          <strong>Copyright &copy; 2015 <a href="#">PLACEMENT CELL UTKAL UNIVERSITY</a>.<br></strong>
+          <strong>Copyright &copy; <?php echo date ("Y") ?> <a href="#">PLACEMENT CELL UTKAL UNIVERSITY</a>.<br></strong>
           <strong>Developed & Maintained By</strong> 
           <strong><a href="#">Students of Integrated MCA & MTech-CSE, Utkal University</a></strong>
         </center>
@@ -385,6 +493,9 @@
     <!-- DataTables -->
     <script src="plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="plugins/fullcalendar/fullcalendar.min.js"></script>
     <!-- FormValidator Refernece -->
     <script type="text/javascript" src="js/formValidator.js"></script>
     <script type="text/javascript" src="js/common.js"></script>

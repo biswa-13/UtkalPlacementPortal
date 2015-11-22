@@ -46,11 +46,12 @@ function dbRowInsert($table_name, $form_data)
     //echo "sql Query -->".$sql;
     // run and return the query result resource
     $result = mysql_query($sql);
+
     return $result;
 
 	}catch(Exception $ex){
 	    echo "<script>
-	      var msg = '<b>* Error Occured While Inserting New Department ...</b>';
+	      var msg = '<b>* Error Occured While Inserting New Record ...</b>';
 	      showWarning(msg);
 	    </script>";
 	  }
@@ -79,11 +80,13 @@ function dbRowDelete($table_name, $where_clause='')
     $sql = "DELETE FROM ".$table_name.$whereSQL;
 
     // run and return the query result resource
-    return mysql_query($sql);
+    $result =  mysql_query($sql);
+   // echo " result --".$result;
+    return $result;
 
 	}catch(Exception $ex){
 	    echo "<script>
-	      var msg = '<b>* Error Occured While Inserting New Department ...</b>';
+	      var msg = '<b>* Error Occured While Deleting record ...</b>';
 	      showWarning(msg);
 	    </script>";
 	  }
@@ -121,13 +124,14 @@ function dbRowUpdate($table_name, $form_data, $where_clause='')
 
     // append the where statement
     $sql .= $whereSQL;
-
     // run and return the query result
-    return mysql_query($sql);
+    //echo "Update Sql Query -->".$sql;
+    $result = mysql_query($sql);
+    return $result;
 
 	}catch(Exception $ex){
 	    echo "<script>
-	      var msg = '<b>* Error Occured While Inserting New Department ...</b>';
+	      var msg = '<b>* Error Occured While Updating Record...</b>';
 	      showWarning(msg);
 	    </script>";
 	  }
