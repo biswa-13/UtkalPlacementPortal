@@ -203,11 +203,11 @@
               <div class="box box-widget widget-user" style="background: url('images/utkal_2.jpg') center;">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header" >
-                  <h3 class="widget-user-username developerName">Prabhat</h3>
-                  <h5 class="widget-user-desc developerDesig"><label class="label label-primary">DataBase Architecture</label></h5>
+                  <h3 class="widget-user-username developerName">Prabhat Routray</h3>
+                  <h5 class="widget-user-desc developerDesig"><label class="label label-primary">DataBase Architect</label></h5>
                 </div>
                 <div class="widget-user-image">
-                  <img class="img-circle" src="dist/img/user8-128x128.jpg" alt="User Avatar" style="height:128px;width:128px;">
+                  <img class="img-circle" src="images/prabhat.jpg" alt="User Avatar" style="height:128px;width:128px;">
                 </div>
                 <div class="box-footer" style="background-color:transparent;border-top:0px;">
                   <div class="row">
@@ -268,7 +268,9 @@
       /*Show Priyabrata's Info*/
     }
     else if(developerId == 6){
-      /*Show Prabhat Info*/
+      msg = "<b>* Name : Prabhat Routray</b> <br> <b>* Designation : Student @ Utkal University</b><br>"+
+      "<b>* Role : Software Engineer and DataBase Architect of Utkal Placement Portal</b><br>"+"<b>* Qualification : BCA</b><br>"+
+      "<b>* Email Id : lucky.pr0034@gmail.com</b><br>"+"<b>* Contact Me : +91 9090459702</b><br>"
     }
     else{
       /*Show Default Msg*/
