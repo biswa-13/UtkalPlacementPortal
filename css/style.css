@@ -15,3 +15,24 @@
 .centerText{
 	text-align: center;
 }
+
+.developerName{
+	font-weight: bold !important;
+    color: blue;
+    margin-top: 10px !important;
+}
+
+.developerDesig{
+	font-size: 17px !important;
+	font-weight: bold;
+    color: orange;
+}
+.handCursor{
+	cursor: pointer;
+}
+.wrapText{
+	max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}

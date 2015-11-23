@@ -10,31 +10,22 @@
 	{
 		if (!empty($name))
 		{
-			if ($extension == 'jpg' || $extension == 'jpeg' ||  $extension == 'JPG' || $extension == 'JPEG')
+			if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'JPG' || $extension == 'JPEG' || $extension == 'PNG')
 			{				
 				if ($size < $maxsize)
 				{
-					echo "processing";
-					$newname = $user_id . '_dp';
+					$newname = $username . '_dp';
 					$location = 'uploads/';
 					if (file_exists($location.$newname.'.jpg'))
 					{
-						$newname1 = $user_id . '_dp1';
+						$newname1 = $username . '_dp1';
 						if (move_uploaded_file($tmp_name, $location.$newname1.'.'.$extension))
 						{
 							unlink($location.$newname.'.jpg');
-							clearstatcache();
 							rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
-							if (add_image($user_id, $location.$newname.'.'.$extension))
-							{
-								$msg = "File successfully uploaded.";
-								header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
-							else
-							{
-								$msg = "Sorry, file not uploaded.";
-								header("Location: student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
+							$msg = "File successfully uploaded.";
+							clearstatcache();
+							header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");
 						}
 						else
 						{
@@ -47,20 +38,12 @@
 						
 						if (move_uploaded_file($tmp_name, $location.$newname1.'.'.$extension))
 						{
-							$newname = $user_id . '_dp';
+							$newname = $username . '_dp';
 							unlink($location.$newname.'.jpeg');
-							clearstatcache();
 							rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
-							if (add_image($user_id, $location.$newname.'.'.$extension))
-							{
-								$msg = "File successfully uploaded.";
-								header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
-							else
-							{
-								$msg = "Sorry, file not uploaded.";
-								header("Location: student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
+							$msg = "File successfully uploaded.";
+							clearstatcache();
+							header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");
 						}
 						else
 						{
@@ -73,21 +56,13 @@
 						
 						if (move_uploaded_file($tmp_name, $location.$newname1.'.'.$extension))
 						{
-							$newname = $user_id . '_dp';
+							$newname = $username . '_dp';
 							$msg = "File successfully uploaded.";
 							unlink($location.$newname.'.JPG');
-							clearstatcache();
 							rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
-							if (add_image($user_id, $location.$newname.'.'.$extension))
-							{
-								$msg = "File successfully uploaded.";
-								header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
-							else
-							{
-								$msg = "Sorry, file not uploaded.";
-								header("Location: student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
+							$msg = "File successfully uploaded.";
+							clearstatcache();
+							header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");
 						}
 						else
 						{
@@ -100,21 +75,48 @@
 						
 						if (move_uploaded_file($tmp_name, $location.$newname1.'.'.$extension))
 						{
-							$newname = $user_id . '_dp';
+							$newname = $username . '_dp';
 							unlink($location.$newname.'.JPEG');
 							clearstatcache();
 							rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
-							if (add_image($user_id, $location.$newname.'.'.$extension))
-							{
-								$msg = "File successfully uploaded.";
-								header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
-							else
-							{
-								$msg = "Sorry, file not uploaded.";
-								header("Location: student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
-								
+							$msg = "File successfully uploaded.";
+							header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");	
+						}
+						else
+						{
+							$msg = "Sorry, file not uploaded.";
+							header("Location: student_homepage.php?pid=6st16yz9&settings_msg=$msg");
+						}
+					}
+					else if (file_exists('uploads/'.$newname.'.PNG'))
+					{
+						
+						if (move_uploaded_file($tmp_name, $location.$newname1.'.'.$extension))
+						{
+							$newname = $username . '_dp';
+							unlink($location.$newname.'.PNG');
+							clearstatcache();
+							rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
+							$msg = "File successfully uploaded.";
+							header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");		
+						}
+						else
+						{
+							$msg = "Sorry, file not uploaded.";
+							header("Location: student_homepage.php?pid=6st16yz9&settings_msg=$msg");
+						}
+					}
+					else if (file_exists('uploads/'.$newname.'.png'))
+					{
+						
+						if (move_uploaded_file($tmp_name, $location.$newname1.'.'.$extension))
+						{
+							$newname = $username . '_dp';
+							unlink($location.$newname.'.png');
+							clearstatcache();
+							rename($location.$newname1.'.'.$extension, $location.$newname.'.'.$extension);
+							$msg = "File successfully uploaded.";
+							header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");
 						}
 						else
 						{
@@ -124,20 +126,13 @@
 					}
 					else
 					{
-						$newname = $user_id . '_dp';
+						$newname = $username . '_dp';
 						if (move_uploaded_file($tmp_name, $location.$newname.'.'.$extension))
 						{
+							echo "Operation successful";
 							clearstatcache();
-							if (add_image($user_id, $location.$newname.'.'.$extension))
-							{
-								$msg = "File successfully uploaded.";
-								header("Refresh:0; student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
-							else
-							{
-								$msg = "Sorry, file not uploaded.";
-								header("Location: student_homepage.php?pid=6st16yz9&settings_msg=$msg");
-							}
+							$msg = "File successfully uploaded.";
+							header("Location: student_homepage.php?pid=6st16yz9&settings_msg=$msg");
 						}
 						else
 						{

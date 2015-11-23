@@ -3,10 +3,9 @@
   require 'Pages/Common/showInformation.php';
 
   $user_id = $_SESSION['user_id'];
-  $user_name = $_SESSION['user_name'];
-  $mobileno = $_SESSION['user_mobile'];
-
   activate_user($user_id);
+
+  $username = getuserfield_settings('user_name', $user_id);
 
   if (isset($_GET['pid']))
   {
@@ -17,13 +16,61 @@
     $page = '1hm12ux7';
   }
 
-  if (isset($_SESSION['cv_ext']))
+  if (file_exists('uploads/'.$username.'_dp.jpg'))
   {
-    $cv_ext = $_SESSION['cv_ext'];
+    $dp_ext = 'jpg';
+    $dp_name = 'uploads/'.$username.'_dp.jpg';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.JPG'))
+  {
+    $dp_ext = 'JPG';
+    $dp_name = 'uploads/'.$username.'_dp.JPG';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.jpeg'))
+  {
+    $dp_ext = 'jpeg';
+    $dp_name = 'uploads/'.$username.'_dp.jpeg';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.JPEG'))
+  {
+    $dp_ext = 'JPEG';
+    $dp_name = 'uploads/'.$username.'_dp.JPEG';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.PNG'))
+  {
+    $dp_ext = 'PNG';
+    $dp_name = 'uploads/'.$username.'_dp.PNG';
+  }
+  elseif(file_exists('uploads/'.$username.'_dp.png'))
+  {
+    $dp_ext = 'png';
+    $dp_name = 'uploads/'.$username.'_dp.png';
+  }
+  else
+  {
+    $dp_name = 'uploads/default_user_icon.jpg';
+  }
+
+  if(file_exists('uploads/'.$username.'_cv.doc')) {
+    $cv_ext = 'doc';
+    $cv_name = 'uploads/'.$username.'_cv.doc';
+  }
+
+  elseif(file_exists('uploads/'.$username.'_cv.docx'))  {
+    $cv_ext = 'docx';
+    $cv_name = 'uploads/'.$username.'_cv.docx';
+  }
+
+  elseif(file_exists('uploads/'.$username.'_cv.pdf'))  {
+    $cv_ext = 'pdf';
+    $cv_name = 'uploads/'.$username.'_cv.pdf';
+  }
+  else
+  {
+    $cv_name = 'uploads/cv_upload.jpg';
   }
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -59,6 +106,7 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
     <!-- iCheck -->
+    <link href="plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>-->
     <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,15 +114,24 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <!-- Custom Style File  -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
+    <!--Styles required for DataTable -->
+    <link rel="stylesheet" type="text/css" href="plugins/datatables/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/datatables/dataTables.bootstrap.css">
 
 
+    
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
+  <noscript>
+  This page needs JavaScript activated to work. 
+  </noscript>
+    <div class="wrapper" style="margin-top:-20px;">
+
       <header class="main-header">
 
         <!-- Logo -->
@@ -183,16 +240,16 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img id="toprightimg" src="<?php echo getuserfield_settings('image', $user_id);?>" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><?php echo get_name($user_id); ?></span>
+                  <img id="toprightimg" src="<?php echo $dp_name;?>" class="user-image" alt="User Image">
+                  <span class="hidden-xs"><?php echo getuserfield_settings('user_name', $user_id); ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img id="toprightdropdownimg" src="<?php echo getuserfield_settings('image', $user_id);?>" class="img-circle" alt="User Image">
+                    <img id="toprightdropdownimg" src="<?php echo $dp_name;?>" class="img-circle" alt="User Image">
                     <p>
                       <?php echo get_name($user_id); ?>
-                      <small>Registered since Nov. 2012</small>
+                      <small>Registered since <?php echo getuserfield_settings('today_date', $user_id); ?></small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -230,7 +287,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img id="topleftimg" src="<?php echo getuserfield_settings('image', $user_id);?>" class="img img-circle user-image" alt="User Image">
+              <img id="topleftimg" src="<?php echo $dp_name;?>" class="img img-circle user-image" alt="User Image" style="height : 50px !important;width:: 50px !important;">
             </div>
             <div class="pull-left info">
               <p><?php echo get_name($user_id); ?></p>
@@ -260,6 +317,16 @@
               <a href="student_homepage.php?pid=7pr8yhf0">
                 <i class="glyphicon glyphicon-user"></i>
                 <span>Profile</span>
+              </a>
+            </li>
+            <li class=" treeview">
+              <a href="student_homepage.php?pid=no90kl13">
+                <i class="fa fa-institution"></i> <span>Departments</span></i>
+              </a>
+            </li>
+            <li class=" treeview">
+              <a href="student_homepage.php?pid=i29wls18">
+                <i class="fa fa-user-secret"></i> <span>Employers</span></i>
               </a>
             </li>
             <li>
@@ -301,8 +368,7 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper" id="studentContainer">
           <?php
-              echo $mobileno;
-              
+
               if ($page === '1hm12ux7')
               {
                 if (check_activation($user_id) == 1)
@@ -332,6 +398,18 @@
                 if (check_activation($user_id) == 1)
                 {
                   include 'Pages/StudentPanel/cvupload.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
+              }
+              else
+              if ($page === '3ca88io2')
+              {
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/StudentPanel/cvremove.php';
                 }
                 else
                 {
@@ -387,6 +465,18 @@
                 }
               }
               else
+              if ($page === '73bwr8fy')
+              {
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/remove_dp.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
+              }
+              else
               if ($page === '7pr8yhf0')
               {
                 if (check_activation($user_id) == 1)
@@ -416,6 +506,18 @@
                 if (check_activation($user_id) == 1)
                 {
                   include 'Pages/Common/update_password.php';
+                }
+                else
+                {
+                  include 'Pages/Common/logout.php';
+                }
+              }
+              else
+              if ($page === '9rmm32c8')
+              {
+                if (check_activation($user_id) == 1)
+                {
+                  include 'Pages/Common/check_currpass.php';
                 }
                 else
                 {
@@ -458,10 +560,17 @@
                   include 'Pages/Common/logout.php';
                 }
               }
-              else
-              if ($page === '81fgc3tx')
+              else if ($page === '81fgc3tx')
               {
                   include 'Pages/Common/logout.php';
+              }  
+              else if ($page === 'no90kl13')
+              {
+                  include 'Pages/StudentPanel/departments.php';
+              }
+              else if ($page === 'i29wls18')
+              {
+                  include 'Pages/StudentPanel/employers.php';
               }
               else
               {
@@ -478,7 +587,7 @@
           <strong>Developed & Maintained By</strong> 
           <strong><a href="#">Students of Integrated MCA & MTech-CSE, Utkal University</a></strong>
         </center>
-    </footer>
+      </footer>
 
     <aside class="control-sidebar control-sidebar-dark">
       <div class="tab-content">
@@ -497,7 +606,7 @@
     <!-- Sparkline -->
     <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
     <!-- jvectormap -->
-    <script src="jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
     <!-- SlimScroll 1.3.0 -->
     <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
@@ -507,15 +616,14 @@
     <script src="dist/js/pages/dashboard2.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    <!-- DataTables -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
     <script src="plugins/fullcalendar/fullcalendar.min.js"></script>
-    
     <!-- FormValidator Refernece -->
     <script type="text/javascript" src="js/formValidator.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-
-
-    
   </body>
 </html>

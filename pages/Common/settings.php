@@ -1,65 +1,29 @@
 <SCRIPT TYPE="text/javascript">
 
-  function newpass_validation()
-  {
-    if (!document.getElementById("cpassword").value)
-    {
-      alert("Please enter your current password");
-      document.getElementById("cpassword").focus();
-      return false;
-    }
-    if (!document.getElementById("newpass").value)
-    {
-      alert("Please enter your new password");
-      document.getElementById("newpass").focus();
-      return false;
-    }
-    if (!document.getElementById("confirmpass").value)
-    {
-      alert("Please confirm your new password");
-      document.getElementById("confirmpass").focus();
-      return false;
-    }
-    if (document.getElementById("newpass").value != document.getElementById("confirmpass").value)
-    {
-      alert("New passwords don't match. Please confirm again.");
-      document.getElementById("confirmpass").value = '';
-      document.getElementById("confirmpass").focus();
-      return false;
-    }
-  }
-  
-  function newemail_validation()
-  {
-    if (!document.getElementById("cpasswordce").value)
-    {
-      alert("Please enter your current password.");
-      document.getElementById("cpasswordce").focus();
-      return false;
-    }
-    if (!document.getElementById("newemail").value)
-    {
-      alert("Please enter your new EMail ID.");
-      document.getElementById("newemail").focus();
-      return false;
-    }
-  }
+  <script type="text/javascript">
+      function process_cp(str)
+      {
+        var xhttp;
 
-  function mobile_validation()
-  {
-    if (!document.getElementById("cpasswordmb").value)
-    {
-      alert("Please enter your current password.");
-      document.getElementById("cpasswordmb").focus();
-      return false;
-    }
-    if (!document.getElementById("newmobile").value)
-    {
-      alert("Please enter your new mobile number.");
-      document.getElementById("newmobile").focus();
-      return false;
-    }
-  }
+        if(window.XMLHttpRequest) {
+        //code for modern browsers
+        xhttp = new XMLHttpRequest();
+        } else  {
+        //code for IE6 and before
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xhttp.onreadystatechange = function() {
+
+        if(xhttp.readyState == 4 && xhttp.status == 200)  {
+            document.getElementById("cp_status").innerHTML = xhttp.responseText;
+          }
+        };
+
+        xhttp.open("GET", "Pages/Common/check_currpass.php", true);
+        xhttp.send();
+      }
+    </script>
 
 
 </SCRIPT>
@@ -137,16 +101,16 @@
                     </form>
                   </div>
                   <div class="tab-pane" id="changepassword">
-                    <form class="form-horizontal box box-primary" action="student_homepage.php?pid=9rmm32c6" method="POST">
+                    <form class="form-horizontal box box-primary" id="changepassform" action="student_homepage.php?pid=9rmm32c6" method="POST">
                       <br>
                       <div class="box-header with-border">
                         <h3 class="box-title">Change Your Password</h3>
                       </div>
                       <br>
-                      <div class="form-group" action="update_password.php" method="POST">
+                      <div class="form-group" action="update_password.php">
                         <label class="col-sm-2 control-label">Current Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="cpassword" placeholder="Current Password" name="cpassword">
+                          <input type="password" class="form-control" id="cpasswordcp" required placeholder="Current Password" name="cpassword" onkeyup="process_cp(this.value)"><br>
                         </div>
                       </div>
                       <br>
@@ -154,19 +118,19 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">New Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="newpass" placeholder="New Password" name="newpass">
+                          <input type="password" class="form-control" id="newpass" required placeholder="New Password" name="newpass">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Confirm New Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="confirmpass" placeholder="Confirm Password" name="confirmpass">
+                          <input type="password" class="form-control" id="confirmpass" required placeholder="Confirm Password" name="confirmpass">
                         </div>
                       </div>
                     </div>
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-primary" onclick="return newpass_validation()">Submit</button>&nbsp; &nbsp; &nbsp;
+                          <button type="submit" class="btn btn-primary">Submit</button>&nbsp; &nbsp; &nbsp;
                           <button type="reset" class="btn btn-danger">Cancel</button>
                         </div>
                       </div>
@@ -175,7 +139,7 @@
                   </div>
 
                   <div class="tab-pane" id="deleteaccount">
-                    <form class="form-horizontal box box-primary">
+                    <form class="form-horizontal box box-primary" action="student_homepage.php?pid=8cmp43e2" method="POST">
                       <br>
                       <div class="box-header with-border">
                         <h3 class="box-title">Delete Your Account</h3>
@@ -184,10 +148,16 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Enter Your Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="cpassword" placeholder="Your Password">
+                          <input type="password" class="form-control" id="cpassworddl" required placeholder="Your Password" onkeyup="process(this.value)">
                         </div>
                       </div>
                       <br>
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-primary">Submit</button>&nbsp; &nbsp; &nbsp;
+                          <button type="reset" class="btn btn-danger">Cancel</button>
+                        </div>
+                      </div>
                     </form>
                   </div><!-- /.tab-pane -->
                   <div class="tab-pane" id="changeemail">
@@ -200,19 +170,19 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Current Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="cpasswordce" name="cpasswordce" placeholder="Current Password">
+                          <input type="password" class="form-control" id="cpasswordce" required name="cpasswordce" placeholder="Current Password" onkeyup="process(this.value)">
                         </div>
                       </div>
                       <br>
                       <div class="form-group">
                         <label class="col-sm-2 control-label">New EMail ID</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="newemail" name="newemail" placeholder="New EMail">
+                          <input type="email" class="form-control" id="newemail" required name="newemail" placeholder="New EMail">
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-primary" onclick="return newemail_validation()">Submit</button>&nbsp; &nbsp; &nbsp;
+                          <button type="submit" class="btn btn-primary">Submit</button>&nbsp; &nbsp; &nbsp;
                           <button type="reset" class="btn btn-danger">Cancel</button>
                         </div>
                       </div>
@@ -226,7 +196,7 @@
                         <h3 class="box-title">Update Your Profile Picture</h3>
                       </div>
                       <br>
-                      <img src="<?php echo getuserfield_settings('image', $user_id);?>" class="img img-square user-image" alt="User Image" height=300 width=200>
+                      <img src="<?php echo $dp_name;?>" class="img-responsive" alt="User Image" height=300 width=200>
                       <form action="student_homepage.php?pid=73bwr8fx" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                           <div class="form-group">
@@ -235,7 +205,8 @@
                           </div>
                         </div>
                         <div class="box-footer">
-                          <input type="submit" value="Upload" class="btn btn-primary">
+                          <input type="submit" value="Upload" class="btn btn-primary">&nbsp; &nbsp;
+                          <a href="student_homepage.php?pid=73bwr8fy" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp; Remove Picture</a>
                         </div>
                       </form>
                     </div>
@@ -250,19 +221,19 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Current Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="cpasswordmb" name="cpasswordmb" placeholder="Current Password">
+                          <input type="password" class="form-control" id="cpasswordmb" required name="cpasswordmb" placeholder="Current Password" onkeyup="process(this.value)">
                         </div>
                       </div>
                       <br>
                       <div class="form-group">
                         <label class="col-sm-2 control-label">New Mobile Number</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="newmobile" name="newmobile" placeholder="New Mobile Number">
+                          <input type="text" class="form-control" id="newmobile" name="newmobile" required placeholder="New Mobile Number">
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-primary" onclick="return mobile_validation()">Submit</button>&nbsp; &nbsp; &nbsp;
+                          <button type="submit" class="btn btn-primary">Submit</button>&nbsp; &nbsp; &nbsp;
                           <button type="reset" class="btn btn-danger">Cancel</button>
                         </div>
                       </div>
