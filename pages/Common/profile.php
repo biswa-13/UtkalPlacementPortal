@@ -111,9 +111,11 @@
           if(!document.getElementById("sameaddr").checked)
           {
             document.getElementById("permanentaddress").value = '';
+            $(document.getElementById("permanentaddress")).prop("readonly",false);
           }
           else  {
             document.getElementById("permanentaddress").value = document.getElementById("presentaddress").value;
+            $(document.getElementById("permanentaddress")).prop("readonly",true);
           }
       }
    </script>
