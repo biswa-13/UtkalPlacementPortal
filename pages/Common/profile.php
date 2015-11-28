@@ -98,6 +98,40 @@
             document.getElementById("inputMName").focus();
             return false;
           }
+<<<<<<< HEAD
+=======
+
+          var inputDate = new Date(document.getElementById("inputDOB").value);
+          var today = new Date();
+
+          if (inputDate.getFullYear() >= today.getFullYear() - 16)  {
+            alert("Invalid Date");
+            document.getElementById("inputDOB").value = '';
+            document.getElementById("inputDOB").focus();
+            return false;
+          }
+      }
+      $(document).ready(function(){
+        console.log("jquery...");
+        $("#sameaddr").change(function(){
+          if($(this).is(":checked")){
+            $("#permanentaddress").text($("#presentaddress").text());
+          }else{
+            $("#permanentaddress").text("");
+          }
+        })
+      });
+      function same_address() {
+          if(!document.getElementById("sameaddr").checked)
+          {
+            document.getElementById("permanentaddress").value = '';
+            $(document.getElementById("permanentaddress")).prop("readonly",false);
+          }
+          else  {
+            document.getElementById("permanentaddress").value = document.getElementById("presentaddress").value;
+            $(document.getElementById("permanentaddress")).prop("readonly",true);
+          }
+>>>>>>> origin/master
       }
    </script>
     <?php
