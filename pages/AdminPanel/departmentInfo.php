@@ -303,19 +303,15 @@ function showDeptInformation(data){
       </div>
     </div>
   </div>
- </div>
+</div>
 <!-- Finish : Rendering Of  Modal-->
 <script type="text/javascript">
   function addDepartment(formId){
     formId = 'addDeptForm';
     if(formValidator(formId)){
-<<<<<<< HEAD
       event.preventDefault();
       var formData = getDeptFormData(formId);
       /*
-=======
-      //event.preventDefault();
->>>>>>> origin/master
       var elemName = "#"+formId;
       var formData = {};
       formData.deptName = $("#deptName").val() ;

@@ -1,33 +1,3 @@
-<SCRIPT TYPE="text/javascript">
-
-  <script type="text/javascript">
-      function process_cp(str)
-      {
-        var xhttp;
-
-        if(window.XMLHttpRequest) {
-        //code for modern browsers
-        xhttp = new XMLHttpRequest();
-        } else  {
-        //code for IE6 and before
-        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xhttp.onreadystatechange = function() {
-
-        if(xhttp.readyState == 4 && xhttp.status == 200)  {
-            document.getElementById("cp_status").innerHTML = xhttp.responseText;
-          }
-        };
-
-        xhttp.open("GET", "Pages/Common/check_currpass.php", true);
-        xhttp.send();
-      }
-    </script>
-
-
-</SCRIPT>
-
 <?php
   if (isset($_GET['settings_msg']))
   {
@@ -110,7 +80,7 @@
                       <div class="form-group" action="update_password.php">
                         <label class="col-sm-2 control-label">Current Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="cpasswordcp" required placeholder="Current Password" name="cpassword" onkeyup="process_cp(this.value)"><br>
+                          <input type="password" class="form-control" id="cpasswordcp" required placeholder="Current Password" name="cpassword" pattern="(<?php echo getuserfield_settings('password', $user_id)?>)" oninvalid="this.setCustomValidity('Incorrect Password')" oninput="setCustomValidity('')"><br>
                         </div>
                       </div>
                       <br>
@@ -148,7 +118,7 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Enter Your Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="cpassworddl" required placeholder="Your Password" onkeyup="process(this.value)">
+                          <input type="password" class="form-control" id="cpassworddl" required placeholder="Your Password" pattern="(<?php echo getuserfield_settings('password', $user_id)?>)" oninvalid="this.setCustomValidity('Incorrect Password')" oninput="setCustomValidity('')">
                         </div>
                       </div>
                       <br>
@@ -159,7 +129,7 @@
                         </div>
                       </div>
                     </form>
-                  </div><!-- /.tab-pane -->
+                  </div>
                   <div class="tab-pane" id="changeemail">
                     <form class="form-horizontal box box-primary" action="student_homepage.php?pid=17yxc0pq" method="POST">
                       <br>
@@ -170,14 +140,14 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Current Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="cpasswordce" required name="cpasswordce" placeholder="Current Password" onkeyup="process(this.value)">
+                          <input type="password" class="form-control" id="cpasswordce" required name="cpasswordce" placeholder="Current Password" pattern="(<?php echo getuserfield_settings('password', $user_id)?>)" oninvalid="this.setCustomValidity('Incorrect Password')" oninput="setCustomValidity('')">
                         </div>
                       </div>
                       <br>
                       <div class="form-group">
                         <label class="col-sm-2 control-label">New EMail ID</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="newemail" required name="newemail" placeholder="New EMail">
+                          <input type="email" class="form-control" id="newemail" required name="newemail" placeholder="New EMail" pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" oninvalid="this.setCustomValidity('Invalid Email')" oninput="setCustomValidity('')">
                         </div>
                       </div>
                       <div class="form-group">
@@ -215,20 +185,20 @@
                     <form class="form-horizontal box box-primary" action="student_homepage.php?pid=69qrt3lw" method="POST">
                       <br>
                       <div class="box-header with-border">
-                        <h3 class="box-title">Change Your EMail ID</h3>
+                        <h3 class="box-title">Change Your Mobile Number</h3>
                       </div>
                       <br>
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Current Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="cpasswordmb" required name="cpasswordmb" placeholder="Current Password" onkeyup="process(this.value)">
+                          <input type="password" class="form-control" id="cpasswordmb" required name="cpasswordmb" placeholder="Current Password" pattern="(<?php echo getuserfield_settings('password', $user_id)?>)" oninvalid="this.setCustomValidity('Incorrect Password')" oninput="setCustomValidity('')">
                         </div>
                       </div>
                       <br>
                       <div class="form-group">
                         <label class="col-sm-2 control-label">New Mobile Number</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="newmobile" name="newmobile" required placeholder="New Mobile Number">
+                          <input type="text" class="form-control" id="newmobile" name="newmobile" required placeholder="New Mobile Number" pattern=".[0-9]{9}" oninvalid="this.setCustomValidity('Invalid Mobile No.')" oninput="setCustomValidity('')">
                         </div>
                       </div>
                       <div class="form-group">

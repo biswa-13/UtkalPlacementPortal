@@ -1,6 +1,7 @@
 <?php
   require "Pages/Common/core.php";
   require 'Pages/Common/showInformation.php';
+  require 'Pages/Common/contactUs.php';
 
   $user_id = $_SESSION['user_id'];
   activate_user($user_id);
@@ -357,6 +358,11 @@
             </li>
             --> 
             <li class="treeview">
+              <a onClick = "showContactUsForm()">
+                <i class="fa fa-phone"></i> <span>Contact Us</span></i>
+              </a>
+            </li>
+            <li class="treeview">
               <a href="student_homepage.php?pid=5dp21t6b">
                 <i class="fa fa-star"></i> <span>Developer's Page</span></i>
               </a>
@@ -572,6 +578,10 @@
               {
                   include 'Pages/StudentPanel/employers.php';
               }
+             /* else if ($page === 'uz90po6g')
+              {
+                  include 'Pages/Common/contactUs.php';
+              }*/
               else
               {
                 include 'Pages/StudentPanel/home.php';

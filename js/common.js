@@ -31,3 +31,13 @@ function resetForm(formId){
 	}
 
 }
+
+function showContactUsForm(){
+	console.log("showContactUsForm() is called ...");
+	if(window.jQuery){
+		$("#contactUsModal").modal("show");
+	}else{
+		console.log("jQuery is not working in showContactUsForm() @ common.js ..")
+	}
+
+}

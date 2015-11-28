@@ -1,6 +1,19 @@
    <script type=text/javascript>
       function validate()
       {
+          var inputDate = new Date(document.getElementById("inputDOB").value);
+          var today = new Date();
+
+          if (!inputDate) {
+            return true;
+          }
+          else if((inputDate.getFullYear() >= (parseInt(today.getFullYear())-16))) {
+            alert("You are not upto the age.");
+            document.getElementById("inputDOB").value = '';
+            document.getElementById("inputDOB").focus();
+            return false;
+          }
+
           var name_exp = /^[a-zA-Z]+$/;
 
           if (document.getElementById("inputFName").value == '')  {
@@ -34,7 +47,6 @@
             document.getElementById("inputLName").focus();
             return false;
           }
-
 
           var parent_name_exp = /^[a-z A-Z]+$/;
           if (document.getElementById("inputFatherName").value == '')  {
@@ -85,35 +97,6 @@
             document.getElementById("inputMName").value = '';
             document.getElementById("inputMName").focus();
             return false;
-          }
-
-          var inputDate = new Date(document.getElementById("inputDOB").value);
-          var today = new Date();
-
-          if (inputDate.getFullYear() >= today.getFullYear() - 16)  {
-            alert("Invalid Date");
-            document.getElementById("inputDOB").value = '';
-            document.getElementById("inputDOB").focus();
-            return false;
-          }
-      }
-      $(document).ready(function(){
-        console.log("jquery...");
-        $("#sameaddr").change(function(){
-          if($(this).is(":checked")){
-            $("#permanentaddress").text($("#presentaddress").text());
-          }else{
-            $("#permanentaddress").text("");
-          }
-        })
-      });
-      function same_address() {
-          if(!document.getElementById("sameaddr").checked)
-          {
-            document.getElementById("permanentaddress").value = '';
-          }
-          else  {
-            document.getElementById("permanentaddress").value = document.getElementById("presentaddress").value;
           }
       }
    </script>
@@ -240,7 +223,7 @@
                       <div class="form-group">
                         <label for="inputFName" class="col-sm-2 control-label">First Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputFName" name="inputFName" placeholder="First Name" value="<?php echo getuserfield_profile('first_name', $user_id); ?>" onkeyup="return validate_firstname(this.value)" required>
+                          <input type="text" class="form-control" id="inputFName" name="inputFName" placeholder="First Name" value="<?php echo getuserfield_profile('first_name', $user_id); ?>" required>
                         </div>
                       </div>
                       <div class="form-group">
@@ -289,7 +272,7 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Same as Permanent Address</label>
                         <div class="col-sm-10">
-                          <input type="checkbox" id="sameaddr" value="yes" onclick="return same_address()"> 
+                          <input type="checkbox" id="sameaddr"> 
                         </div>
                       </div>
                       <div class="form-group">
@@ -314,3 +297,16 @@
 
         </section>
     </div>
+
+    <script type="text/javascript">
+      $(document).ready(function()  {
+        $("#sameaddr").on("click", function() {
+          if($(this).is(":checked"))  {
+            $("#permanentaddress").val($("#presentaddress").val());
+          }
+          else  {
+            $("#permanentaddress").val("");
+          }
+        });
+      });
+    </script>

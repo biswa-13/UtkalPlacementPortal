@@ -1,69 +1,147 @@
 <SCRIPT TYPE="text/javascript">
   function validate ()
   {
-    var percent_exp = /^[0-9.]+$/;
-    if (document.getElementById("inputPercent10").value == '')  {
-            return true;
+    var today = new Date();
+
+    var pass10 = new Date(document.getElementById("inputPass10").value);
+    if (!pass10)  {
+      return true;
     }
-    else if (!document.getElementById("inputPercent10").value.match(percent_exp))  {
-      alert("Invalid Percentage.");
+    else if (parseInt(pass10.getFullYear()) > parseInt(today.getFullYear())-2)  {
+      alert("Date of passing class 10 violates the rules and regulations of the University.");
+      document.getElementById("inputPass10").value = '';
+      document.getElementById("inputPass10").focus();
+      return false;
+    }
+    
+    if (document.getElementById("inputPercent10").value == '')  {
+      return true;
+    }
+    else if(parseInt(document.getElementById("inputPercent10").value) > 100) {
+      alert("Percentage must be less than 100.");
       document.getElementById("inputPercent10").value = '';
       document.getElementById("inputPercent10").focus();
       return false;
     }
-    else if(document.getElementById("inputPercent10").value.length > 2 && parseInt(document.getElementById("inputPercent10").value) > 100) {
-      alert("Percentage must be less than 100.");
+    else if(parseInt(document.getElementById("inputPercent10").value) < 40) {
+      alert("You must pass the class 10 to continue in this portal.");
       document.getElementById("inputPercent10").value = '';
       document.getElementById("inputPercent10").focus();
       return false;
     }
 
+    var passinter = new Date(document.getElementById("inputPassInter").value);
+    if (!passinter)  {
+      return true;
+    }
+    else  {
+      if (parseInt(passinter.getFullYear()) > parseInt(today.getFullYear()))  {
+        alert("Date of passing intermediate is cannot be more than today.");
+        document.getElementById("inputPassInter").value = '';
+        document.getElementById("inputPassInter").focus();
+        return false;
+      }
+      else if (parseInt(passinter.getFullYear()) == parseInt(today.getFullYear()))  {
+        if(passinter.getMonth() > today.getMonth())  {
+          alert("Date of passing intermediate is cannot be more than today.");
+          document.getElementById("inputPassInter").value = '';
+          document.getElementById("inputPassInter").focus();
+          return false;
+        }
+        else if(passinter.getMonth() == today.getMonth()) {
+          if(passinter.getDate() >= today.getDate())  {
+            alert("Date of passing intermediate is cannot be more than today.");
+            document.getElementById("inputPassInter").value = '';
+            document.getElementById("inputPassInter").focus();
+            return false;
+          }
+        }
+      }
+    }
+
     if (document.getElementById("inputPercentInter").value == '')  {
             return true;
     }
-    else if (!document.getElementById("inputPercentInter").value.match(percent_exp))  {
-      alert("Percentage must contain only 2 numbers.");
+    else if(parseInt(document.getElementById("inputPercentInter").value) > 100) {
+      alert("Percentage must be less than 100.");
       document.getElementById("inputPercentInter").value = '';
       document.getElementById("inputPercentInter").focus();
       return false;
     }
-    else if(document.getElementById("inputPercentInter").value.length > 2 && parseInt(document.getElementById("inputPercentInter").value) > 100) {
-      alert("Percentage must be less than 100.");
+    else if(parseInt(document.getElementById("inputPercentInter").value) < 40) {
+      alert("You must pass the intermediate to continue in this portal.");
       document.getElementById("inputPercentInter").value = '';
       document.getElementById("inputPercentInter").focus();
+      return false;
+    }
+
+    var joingrad = new Date(document.getElementById("inputGradJDate").value);
+    var passgrad = new Date(document.getElementById("inputGradPDate").value);
+    if (!passgrad || !joingrad)  {
+      return true;
+    }
+    else if(joingrad.getFullYear() >= passgrad.getFullYear()) {
+      alert("Graduation joining date cannot be same or more than Graduation passing date.");
+      document.getElementById("inputGradJDate").value = '';
+      document.getElementById("inputGradPDate").value = '';
+      document.getElementById("inputGradJDate").focus();
+      return false;
+    }
+    else if((parseInt(passgrad.getFullYear()) - parseInt(joingrad.getFullYear())) < 3)  {
+      alert("Graduation period must be a minimum of 3 years.");
+      document.getElementById("inputGradJDate").value = '';
+      document.getElementById("inputGradPDate").value = '';
+      document.getElementById("inputGradJDate").focus();
       return false;
     }
 
     if (document.getElementById("inputGradPercent").value == '')  {
             return true;
     }
-    else if (!document.getElementById("inputGradPercent").value.match(percent_exp))  {
-      alert("Percentage must contain only 2 numbers.");
+    else if(parseInt(document.getElementById("inputGradPercent").value) > 100) {
+      alert("Percentage must be less than 100.");
       document.getElementById("inputGradPercent").value = '';
       document.getElementById("inputGradPercent").focus();
       return false;
     }
-    else if(document.getElementById("inputGradPercent").value.length > 2 && parseInt(document.getElementById("inputGradPercent").value) > 100) {
-      alert("Percentage must be less than 100.");
+    else if(parseInt(document.getElementById("inputGradPercent").value) < 40) {
+      alert("You must pass the graduation to continue in this portal.");
       document.getElementById("inputGradPercent").value = '';
       document.getElementById("inputGradPercent").focus();
+      return false;
+    }
+
+    var joinpg = new Date(document.getElementById("inputPGJDate").value);
+    var passpg = new Date(document.getElementById("inputPGPDate").value);
+    if (!joinpg || !passpg)  {
+      return true;
+    }
+    else if(joinpg.getFullYear() >= passpg.getFullYear()) {
+      alert("Post-Graduation joining date cannot be same or more than Graduation passing date.");
+      document.getElementById("inputPGJDate").value = '';
+      document.getElementById("inputPGPDate").value = '';
+      document.getElementById("inputPGJDate").focus();
+      return false;
+    }
+    else if(parseInt(passpg.getFullYear()) - parseInt(joinpg.getFullYear()) < 2)  {
+      alert("Post-Graduation period must be a minimum of 3 years.");
+      document.getElementById("inputPGJDate").value = '';
+      document.getElementById("inputPGPDate").value = '';
+      document.getElementById("inputPGJDate").focus();
       return false;
     }
 
     if (document.getElementById("inputPGPercent").value == '')  {
             return true;
     }
-    else if (document.getElementById("inputPGPercent").value == '')  {
-      return true;
-    }
-    else if (!document.getElementById("inputPGPercent").value.match(percent_exp))  {
-      alert("Percentage must contain only 2 numbers.");
+    else if(parseInt(document.getElementById("inputPGPercent").value) > 100) {
+      alert("Percentage must be less than 100.");
       document.getElementById("inputPGPercent").value = '';
       document.getElementById("inputPGPercent").focus();
       return false;
     }
-    else if(document.getElementById("inputPGPercent").value.length > 2 && parseInt(document.getElementById("inputPGPercent").value) > 100) {
-      alert("Percentage must be less than 100.");
+    else if(parseInt(document.getElementById("inputPGPercent").value) < 40) {
+      alert("You must pass the post-graduation to continue in this portal.");
       document.getElementById("inputPGPercent").value = '';
       document.getElementById("inputPGPercent").focus();
       return false;
@@ -288,7 +366,7 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Class 10 Percentage<span class="valueRequired">*</span></label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputPercent10" name="inputPercent10" required numberType="" mandatory="yes" name="inputPercent10" placeholder="10th Percentage" value="<?php echo getuserfield_academics('x_percent', $user_id); ?>">
+                          <input type="text" class="form-control" id="inputPercent10" name="inputPercent10" required name="inputPercent10" placeholder="10th Percentage" value="<?php echo getuserfield_academics('x_percent', $user_id); ?>" pattern=".[0-9]{1,2}" oninvalid="this.setCustomValidity('Invalid Percentage')" oninput="setCustomValidity('')">
                         </div>
                       </div>
                       <br><br>
@@ -307,7 +385,7 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Intermediate Percentage<span class="valueRequired">*</span></label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputPercentInter" required name="inputPercentInter" mandatory="yes" placeholder="Intermediate Percentage" value="<?php echo getuserfield_academics('intermed_percent', $user_id); ?>">
+                          <input type="text" class="form-control" id="inputPercentInter" required name="inputPercentInter" mandatory="yes" placeholder="Intermediate Percentage" value="<?php echo getuserfield_academics('intermed_percent', $user_id); ?>" pattern=".[0-9]{1,2}" oninvalid="this.setCustomValidity('Invalid Percentage')" oninput="setCustomValidity('')">
                         </div>
                       </div>
                       <br><br>
@@ -338,7 +416,7 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Graduation Percentage<span class="valueRequired">*</span></label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputGradPercent" required name="inputGradPercent" mandatory="yes" placeholder="Graduation Percentage" value="<?php echo getuserfield_academics('grad_percent', $user_id); ?>">
+                          <input type="text" class="form-control" id="inputGradPercent" required name="inputGradPercent" mandatory="yes" placeholder="Graduation Percentage" value="<?php echo getuserfield_academics('grad_percent', $user_id); ?>" pattern=".[0-9]{1,2}" oninvalid="this.setCustomValidity('Invalid Percentage')" oninput="setCustomValidity('')">
                         </div>
                       </div>
                       <br><br>
@@ -363,12 +441,12 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">Post Graduation Percentage</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputPGPercent" name="inputPGPercent" placeholder="Post Graduation Percentage" value="<?php echo getuserfield_academics('pg_percent', $user_id); ?>">
+                          <input type="text" class="form-control" id="inputPGPercent" name="inputPGPercent" placeholder="Post Graduation Percentage" value="<?php echo getuserfield_academics('pg_percent', $user_id); ?>" pattern=".[0-9]{1,2}" oninvalid="this.setCustomValidity('Invalid Percentage')" oninput="setCustomValidity('')">
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-primary btn-flat" id="academicSubmitBtn" onclick="return validate()">Submit</button> &nbsp; &nbsp; &nbsp; &nbsp;
+                          <button type="submit" class="btn btn-primary btn-flat" onclick="return validate()">Submit</button> &nbsp; &nbsp; &nbsp; &nbsp;
                           <button type="reset" class="btn btn-danger btn-flat">Cancel</button>
                         </div>
                       </div>

@@ -61,7 +61,22 @@ function formValidator(formName){
 			}
 		}
 	}
-	//console.log($(elemName).html());
+	var allTextAreas = $(elemName).find("textArea");
+	for(var j = 0; j < allTextAreas.length; j++){
+		var elemId = '#'+allTextAreas[j].id;
+		console.log("textArea elemId --",elemId);
+		var elemMandatory = $(elemId).attr("mandatory");
+		if(elemMandatory === "yes"){
+			var elemVal = $(elemId).val();
+			if(elemVal == "" || elemVal == undefined){
+				requiredFieldLeft = true;
+				blankFieldIds.push(elemId);
+				msgText = "<br><b> * "+ $(elemId).attr("placehoder") +"</b>";
+				console.log("msgText -->",msgText);
+				messageArray += msgText;
+			}
+		}
+	}
 
 	if(requiredFieldLeft == true){
 		//$("#infoModal").modal("show");
